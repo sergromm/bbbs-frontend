@@ -1,0 +1,66 @@
+@import url('../vendor/normalize.css');
+@import url('../vendor/fonts/fonts.css');
+@import url('../blocks/page/page.css');
+@import url('./header.css');
+@import url('./footer.css');
+
+@import url('../blocks/main-read/main-read.css');
+@import url('../blocks/read/read.css');
+@import url('../blocks/read/__title/read__title.css');
+@import url('../blocks/read/__title-text/read__title-text.css');
+@import url('../blocks/read/__arrow-left/read__arrow-left.css');
+@import url('../blocks/read/__arrow-right/read__arrow-right.css');
+@import url('../blocks/read/__title-link/read__title-link.css');
+
+@import url('../blocks/guide/guide.css');
+@import url('../blocks/guide/__image/guide__image.css');
+@import url('../blocks/guide/__title-image/guide__title-image.css');
+@import url('../blocks/guide/__image/_type/guide__image_type_circle.css');
+@import url('../blocks/guide/__image/_type/guide__image_type_arc.css');
+
+@import url('../blocks/poster/__list/poster__list.css');
+@import url('../blocks/poster/__item/poster__item.css');
+@import url('../blocks/poster/__layer/poster__layer.css');
+@import url('../blocks/poster/__title/poster__title.css');
+@import url('../blocks/poster/__subtitle/poster__subtitle.css');
+@import url('../blocks/poster/__link/poster__link.css');
+
+@import url('../blocks/guide/__items/guide__items.css');
+
+@import url('../blocks/read-video/read-video.css');
+@import url('../blocks/read-video/__info/read-video__info.css');
+@import url('../blocks/read-video/__title/read-video__title.css');
+@import url('../blocks/read-video/__subtitle/read-video__subtitle.css');
+@import url('../blocks/read-video/__link/read-video__link.css');
+
+@import url('../blocks/paper/_size/paper_size_mini.css');
+@import url('../blocks/paper/__items/paper__items.css');
+@import url('../blocks/paper/__description/paper__description.css');
+@import url('../blocks/paper/__description/_size/paper__description_size_mini.css');
+@import url('../blocks/paper/__description/_color/paper__description_color_green.css');
+@import url('../blocks/read-paper/read-paper.css');
+@import url('../blocks/paper/__description-title/paper__description-title.css');
+@import url('../blocks/paper/__description-subtitle/paper__description-subtitle.css');
+@import url('../blocks/paper/__description-link/paper__description-link.css');
+@import url('../blocks/paper/__description-link/_size/paper__description-link_size_mini.css');
+@import url('../blocks/paper-text/paper-text.css');
+@import url('../blocks/paper-text/_size/paper-text_size_mini.css');
+@import url('../blocks/paper-text/__wrapper/_size/paper-text__wrapper_size_mini.css');
+@import url('../blocks/paper-text/__text/paper-text__text.css');
+@import url('../blocks/paper-text/__paragraph/paper-text__paragraph.css');
+@import url('../blocks/paper/__description/_color/paper__description_color_yellow.css');
+@import url('../blocks/paper/__description/_color/paper__description_color_orange.css');
+
+@import url('../blocks/poster/__categories/poster__categories.css');
+@import url('../blocks/poster/__category/poster__category.css');
+
+@import url('../blocks/book/__items/book__items.css');
+@import url('../blocks/book/__item/book__item.css');
+@import url('../blocks/book/book.css');
+@import url('../blocks/book/_type/book_type_scient-book.css');
+@import url('../blocks/book/_type/book_type_art-book.css');
+@import url('../blocks/book/__title/book__title.css');
+@import url('../blocks/book/__info/book__info.css');
+@import url('../blocks/book/__line/book__line.css');
+@import url('../blocks/book/__author/book__author.css');
+@import url('../blocks/book/__year/book__year.css');

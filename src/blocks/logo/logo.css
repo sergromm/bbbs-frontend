@@ -1,0 +1,21 @@
+.logo {
+    width: 190px;
+    height: 28px;
+    margin: 0;
+    font-size: 25px;
+    font-weight: 300;
+    line-height: 1.12;
+    color: blue;
+    text-decoration: none;
+}
+
+.logo:visited {
+    color: blue;
+}
+
+
+@media screen and (max-width: 1370px) {
+    .logo {
+        transform: scale(0.8, 0.8);
+    }
+}

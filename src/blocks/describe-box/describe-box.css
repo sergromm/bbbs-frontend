@@ -1,0 +1,24 @@
+.describe-box {
+    grid-area: description;
+    position: relative;
+    margin: 0;
+    height: 520px;
+    border-radius: 30px;
+    background-color: #8CDD94;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+
+@media screen and (max-width: 1441px) {
+    .describe-box {
+        height: auto;
+    }
+}
+
+
+@media screen and (max-width: 1025px) {
+    .describe-box {
+        height: 382px;
+    }
+}

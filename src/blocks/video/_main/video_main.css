@@ -1,0 +1,23 @@
+.video_main {
+    display: flex;
+    height: 675px;
+    width: 100%;
+}
+
+@media screen and (max-width: 1260px) {
+    .video_main {
+        flex-direction: column-reverse;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .video_main {
+        height: 600px;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .video_main {
+        height: 350px;
+    }
+}

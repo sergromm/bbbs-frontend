@@ -1,0 +1,12 @@
+.footer__logo {
+    grid-area: logo;
+}
+
+@media screen and (max-width: 1180px) {
+    .footer__logo {
+        margin-bottom: 40px;
+        width: 252px;
+        height: 46px;
+    }
+}
+

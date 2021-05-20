@@ -1,0 +1,21 @@
+.header__right-block {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  width: 80px;
+  transition: width 0.5s;
+  height: 20px;
+  margin-left: 77px;
+}
+
+@media screen and (max-width: 1370px) {
+  .header__right-block {
+    margin-left: 0;
+    width: 20px;
+  }
+}
+@media screen and (max-width: 1370px) {
+  .header__right-block {
+    width: 25px;
+  }
+}

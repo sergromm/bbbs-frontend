@@ -1,0 +1,20 @@
+.header__right-block_disclosed {
+    width: 86%;
+}
+
+
+@media screen and (max-width: 1370px) {
+    .header__right-block_disclosed {
+        width: 80px;
+    }
+  }
+
+
+  @media screen and (max-width: 940px) {
+    .header__right-block_disclosed {
+        width: 20px;
+    }
+  }
+
+
+  
