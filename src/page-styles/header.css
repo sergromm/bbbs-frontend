@@ -1,5 +1,6 @@
 /***********ИМПОРТЫ ДЛЯ ХЭДЕРА **************/
 @import url("../blocks/header/header.css");
+@import url("../blocks/header/_hidden/header_hidden.css");
 @import url("../blocks/header/__btn-menu/header__btn-menu.css");
 @import url("../blocks/header/__btn-menu/_opening/header__btn-menu_opening.css");
 @import url("../blocks/header/__right-block/header__right-block.css");
