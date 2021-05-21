@@ -1,3 +1,4 @@
 .search__results_show {
-    display: block;
+  visibility: visible;
+  opacity: 1;
 }

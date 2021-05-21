@@ -1,10 +1,33 @@
 import "./Search.css";
-
 import PropTypes from "prop-types";
+import SearchResult from "./SearchResult";
 
-function Search({ isSearchOpen, searchButtonClick }) {
+function Search({
+  isSearchOpen,
+  searchButtonClick,
+  searchSubmit,
+  resultsVisible,
+}) {
+  const searchData = [
+    {
+      text: "Причины подростковой агрессии",
+      id: 1,
+    },
+    {
+      text: "Агрессивное поведение детей-сирот",
+      id: 2,
+    },
+    {
+      text: "Что делать если ваш младший агрессивно себя ведет, решил закрыть пару?",
+      id: 3,
+    },
+    {
+      text: "Как реагировать на агрессивное поведения ребенка",
+      id: 4,
+    },
+  ];
   return (
-    <form className="search" name="search">
+    <form onSubmit={searchSubmit} className="search" name="search">
       <div
         className={
           isSearchOpen
@@ -13,38 +36,16 @@ function Search({ isSearchOpen, searchButtonClick }) {
         }
       >
         <input type="text" name="searchInput" className="search__input" />
-        <ul className="search__results">
-          <li className="search__result">
-            <p className="search__result-text">Причины подростковой агрессии</p>
-            <a href="/papers" className="search__result-link">
-              статьи
-            </a>
-          </li>
-          <li className="search__result">
-            <p className="search__result-text">
-              Агрессивное поведение детей-сирот
-            </p>
-            <a href="/video" className="search__result-link">
-              видео
-            </a>
-          </li>
-          <li className="search__result">
-            <p className="search__result-text">
-              Что делать если ваш младший агрессивно себя ведет, решил закрыть
-              пару?
-            </p>
-            <a href="/question" className="search__result-link">
-              вопросы
-            </a>
-          </li>
-          <li className="search__result">
-            <p className="search__result-text">
-              Как реагировать на агрессивное поведения ребенка
-            </p>
-            <a href="/books" className="search__result-link">
-              книги
-            </a>
-          </li>
+        <ul
+          className={
+            resultsVisible
+              ? "search__results search__results_show"
+              : "search__results"
+          }
+        >
+          {searchData.map((result) => (
+            <SearchResult key={result.id} text={result.text} />
+          ))}
         </ul>
       </div>
       <button
@@ -61,6 +62,8 @@ function Search({ isSearchOpen, searchButtonClick }) {
 Search.propTypes = {
   isSearchOpen: PropTypes.bool.isRequired,
   searchButtonClick: PropTypes.func.isRequired,
+  searchSubmit: PropTypes.func.isRequired,
+  resultsVisible: PropTypes.bool.isRequired,
 };
 
 export default Search;

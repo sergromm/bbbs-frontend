@@ -9,9 +9,16 @@ function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const [resultsVisible, setResultsVisible] = useState(false);
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    setResultsVisible(true);
+  };
+
   const handleSearchButtonClick = () => {
     if (isSearchOpen) {
       setIsSearchOpen(false);
+      setResultsVisible(false);
     } else {
       setIsSearchOpen(true);
       setIsMenuOpen(false);
@@ -21,6 +28,7 @@ function Header() {
   const handleMenuButtonClick = () => {
     if (isMenuOpen) {
       setIsMenuOpen(false);
+      setResultsVisible(false);
     } else {
       setIsMenuOpen(true);
       setIsSearchOpen(false);
@@ -36,6 +44,7 @@ function Header() {
 
       if (prevScrollpos > currentScrollPos) {
         header.classList.remove("header_hidden");
+        setResultsVisible(false);
       } else {
         header.classList.add("header_hidden");
       }
@@ -71,6 +80,8 @@ function Header() {
         <Search
           isSearchOpen={isSearchOpen}
           searchButtonClick={handleSearchButtonClick}
+          searchSubmit={handleSearchSubmit}
+          resultsVisible={resultsVisible}
         />
         <ProfileIcon />
       </div>
