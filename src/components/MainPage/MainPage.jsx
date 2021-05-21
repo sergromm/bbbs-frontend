@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import CoverStory from "./CoverStory";
 import DescribeArticle from "./DescribeArticle";
 import Description from "./Description";
@@ -5,8 +6,9 @@ import "./MainPage.css";
 import Paper from "./Paper";
 import PosterList from "./PosterList";
 import QuestionList from "./QuestionList";
-import SocialIframe from "./SocialIframe";
-import Video from "./Video";
+
+const Video = lazy(() => import("./Video"));
+const SocialIframe = lazy(() => import("./SocialIframe"));
 
 function MainPage() {
   const articleData = {
@@ -34,8 +36,10 @@ function MainPage() {
         text={articleData.first.text}
       />
       <PosterList />
-      <Video />
-      <SocialIframe />
+      <Suspense fallback={<div>Загрузка...</div>}>
+        <SocialIframe />
+        <Video />
+      </Suspense>
       <QuestionList />
       <DescribeArticle
         color={articleData.second.color}

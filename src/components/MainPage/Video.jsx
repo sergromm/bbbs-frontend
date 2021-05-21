@@ -9,6 +9,7 @@ function Video() {
         </a>
       </div>
       <iframe
+        loading="lazy"
         className="video__frame"
         src="https://www.youtube.com/embed/KA1wI3X5WSU"
         title="YouTube video player"
