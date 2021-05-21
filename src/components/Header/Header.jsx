@@ -1,5 +1,5 @@
 import "./Header.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Logo from "./Logo/Logo";
 import Navigation from "./Navigation/Navigation";
 import ProfileIcon from "./ProfileIcon/ProfileIcon";
@@ -26,6 +26,26 @@ function Header() {
       setIsSearchOpen(false);
     }
   };
+
+  useEffect(() => {
+    const header = document.querySelector(".header");
+    let prevScrollpos = window.pageYOffset;
+
+    const hideNavbar = () => {
+      const currentScrollPos = window.pageYOffset;
+
+      if (prevScrollpos > currentScrollPos) {
+        header.classList.remove("header_hidden");
+      } else {
+        header.classList.add("header_hidden");
+      }
+
+      prevScrollpos = currentScrollPos;
+    };
+
+    window.addEventListener("scroll", hideNavbar);
+    return () => window.removeEventListener("scroll", hideNavbar);
+  }, []);
 
   return (
     <header className="header">
