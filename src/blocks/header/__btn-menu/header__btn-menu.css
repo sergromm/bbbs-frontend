@@ -11,7 +11,7 @@
   padding: 0;
 }
 
-@media screen and (max-width: 1370px) {
+@media screen and (max-width: 1373px) {
   .header__btn-menu {
     display: block;
   }

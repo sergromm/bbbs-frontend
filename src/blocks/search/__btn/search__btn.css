@@ -1,22 +1,21 @@
 .search__btn {
-    padding: 0;
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    margin-right: 20px;
-    background-color: transparent;
-    background-image: url('../../../images/ico-search.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    border: none;
-    outline: none;
-    cursor: pointer;
+  padding: 0;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 20px;
+  background-color: transparent;
+  background-image: url("../../../images/ico-search.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
-@media screen and (max-width: 1370px) {
-    .search__btn {
-        margin-right: 0;
-    }
+@media screen and (max-width: 1373px) {
+  .search__btn {
+    margin-right: 0;
+  }
 }
-
