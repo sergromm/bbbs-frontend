@@ -151,3 +151,5 @@ const testApi = new TestApi(URL);
 testApi
   .bookEvent(1, responses.tokens.access)
   .then((data) => console.log(data.data));
+
+export default testApi;
