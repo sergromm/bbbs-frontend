@@ -1,5 +1,6 @@
 @media screen and (max-width: 1370px) {
-    .nav-list_opened {
-        display: flex;
-    }
+  .nav-list_opened {
+    opacity: 1;
+    visibility: visible;
+  }
 }

@@ -3,16 +3,14 @@
   display: flex;
   flex-direction: column;
   align-self: center;
-  opacity: 1;
-  transition: 1s;
   overflow: hidden;
-  visibility: visible;
   width: auto;
+  padding-top: 5px;
+  transition: 1s;
 }
 
 @media screen and (max-width: 1373px) {
   .nav-list {
-    display: none;
     justify-content: space-between;
     align-items: center;
     position: absolute;
@@ -23,5 +21,8 @@
     height: 90vh;
     width: 100%;
     border-radius: 0 0 30px 30px;
+    transition: 0.5s;
+    visibility: hidden;
+    opacity: 0;
   }
 }
