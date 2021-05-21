@@ -2,30 +2,30 @@ import "./Search.css";
 import PropTypes from "prop-types";
 import SearchResult from "./SearchResult";
 
+const searchData = [
+  {
+    text: "Причины подростковой агрессии",
+    id: 1,
+  },
+  {
+    text: "Агрессивное поведение детей-сирот",
+    id: 2,
+  },
+  {
+    text: "Что делать если ваш младший агрессивно себя ведет, решил закрыть пару?",
+    id: 3,
+  },
+  {
+    text: "Как реагировать на агрессивное поведения ребенка",
+    id: 4,
+  },
+];
 function Search({
   isSearchOpen,
   searchButtonClick,
   searchSubmit,
   resultsVisible,
 }) {
-  const searchData = [
-    {
-      text: "Причины подростковой агрессии",
-      id: 1,
-    },
-    {
-      text: "Агрессивное поведение детей-сирот",
-      id: 2,
-    },
-    {
-      text: "Что делать если ваш младший агрессивно себя ведет, решил закрыть пару?",
-      id: 3,
-    },
-    {
-      text: "Как реагировать на агрессивное поведения ребенка",
-      id: 4,
-    },
-  ];
   return (
     <form onSubmit={searchSubmit} className="search" name="search">
       <div

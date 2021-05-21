@@ -8,7 +8,7 @@ import Search from "./Search/Search";
 function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const [headerVisible, setHeaderVisible] = useState(true);
   const [resultsVisible, setResultsVisible] = useState(false);
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -36,17 +36,18 @@ function Header() {
   };
 
   useEffect(() => {
-    const header = document.querySelector(".header");
     let prevScrollpos = window.pageYOffset;
 
     const hideNavbar = () => {
       const currentScrollPos = window.pageYOffset;
 
       if (prevScrollpos > currentScrollPos) {
-        header.classList.remove("header_hidden");
+        setHeaderVisible(true);
         setResultsVisible(false);
+        setIsSearchOpen(false);
+        setIsMenuOpen(false);
       } else {
-        header.classList.add("header_hidden");
+        setHeaderVisible(false);
       }
 
       prevScrollpos = currentScrollPos;
@@ -57,7 +58,7 @@ function Header() {
   }, []);
 
   return (
-    <header className="header">
+    <header className={headerVisible ? "header" : "header header_hidden"}>
       <button
         onClick={handleMenuButtonClick}
         type="button"
