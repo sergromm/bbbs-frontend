@@ -2,7 +2,6 @@ import { lazy, Suspense } from "react";
 import CoverStory from "./CoverStory";
 import DescribeArticle from "./DescribeArticle";
 import Description from "./Description";
-import "./MainPage.css";
 import Paper from "./Paper";
 import PosterList from "./PosterList";
 import QuestionList from "./QuestionList";

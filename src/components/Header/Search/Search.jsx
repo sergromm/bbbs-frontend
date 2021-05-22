@@ -1,4 +1,3 @@
-import "./Search.css";
 import PropTypes from "prop-types";
 import SearchResult from "./SearchResult";
 

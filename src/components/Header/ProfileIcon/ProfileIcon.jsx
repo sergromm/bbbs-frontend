@@ -1,4 +1,3 @@
-import "./ProfileIcon.css";
 import profileIcon from "../../../images/ico-profile.svg";
 
 function ProfileIcon() {

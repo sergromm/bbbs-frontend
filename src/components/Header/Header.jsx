@@ -1,4 +1,3 @@
-import "./Header.css";
 import { useState, useEffect } from "react";
 import Logo from "./Logo/Logo";
 import Navigation from "./Navigation/Navigation";

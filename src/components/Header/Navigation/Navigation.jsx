@@ -1,4 +1,3 @@
-import "./Navigation.css";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 
