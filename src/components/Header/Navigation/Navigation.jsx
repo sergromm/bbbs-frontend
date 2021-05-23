@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Navigation({ isSearchOpen, isMenuOpen }) {
   const [navClasses, setNavClasses] = useState("nav-list");
@@ -23,24 +24,24 @@ function Navigation({ isSearchOpen, isMenuOpen }) {
       <div className="nav-list__container">
         <ul className="nav-list__items nav-list__items_content_navigation">
           <li className="nav-list__item">
-            <a href="./pages/calendar.html" className="nav-list__link">
+            <Link to="./calendar" className="nav-list__link">
               календарь
-            </a>
+            </Link>
           </li>
           <li className="nav-list__item">
-            <a href="./pages/where_to_go.html" className="nav-list__link">
+            <Link to="/where_to_go" className="nav-list__link">
               куда пойти
-            </a>
+            </Link>
           </li>
           <li className="nav-list__item">
-            <a href="./pages/answers.html" className="nav-list__link">
+            <Link to="/questions" className="nav-list__link">
               вопросы
-            </a>
+            </Link>
           </li>
           <li className="nav-list__item nav-list__item_submenu">
-            <a href="/read" className="nav-list__link">
+            <Link to="/read_and_watch" className="nav-list__link">
               читать и смотреть
-            </a>
+            </Link>
             <ul className="nav-list__submenu-list">
               <li className="nav-list__submenu-item">
                 <a href="/guide" className="nav-list__link">
@@ -70,14 +71,14 @@ function Navigation({ isSearchOpen, isMenuOpen }) {
             </ul>
           </li>
           <li className="nav-list__item">
-            <a href="/child-rights" className="nav-list__link">
+            <Link to="/child_rights" className="nav-list__link">
               права детей
-            </a>
+            </Link>
           </li>
           <li className="nav-list__item">
-            <a href="/stories" className="nav-list__link">
+            <Link to="/stories" className="nav-list__link">
               истории
-            </a>
+            </Link>
           </li>
         </ul>
         <ul className="nav-list__items nav-list__items_content_social">

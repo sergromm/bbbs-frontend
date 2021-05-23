@@ -1,4 +1,4 @@
-import "./Footer.css";
+import { Link } from "react-router-dom";
 import logoWhite from "../../images/logo-BBBS-white.svg";
 
 function Footer() {
@@ -7,39 +7,39 @@ function Footer() {
       <img className="footer__logo" src={logoWhite} alt="логотип BBBS" />
       <ul className="footer__list footer__list_content_navigation">
         <li className="footer__list-item">
-          <a className="footer__link" href="/">
+          <Link className="footer__link" to="/">
             о проекте
-          </a>
+          </Link>
         </li>
         <li className="footer__list-item">
-          <a className="footer__link" href="./calendar">
+          <Link className="footer__link" to="/calendar">
             календарь
-          </a>
+          </Link>
         </li>
         <li className="footer__list-item">
-          <a className="footer__link" href="./where_to_go">
+          <Link className="footer__link" to="/where_to_go">
             куда пойти
-          </a>
+          </Link>
         </li>
         <li className="footer__list-item">
-          <a className="footer__link" href="./answers">
+          <Link className="footer__link" to="/questions">
             вопросы
-          </a>
+          </Link>
         </li>
         <li className="footer__list-item">
-          <a className="footer__link" href="./read">
+          <Link className="footer__link" to="/read_and_watch">
             читать и смотреть
-          </a>
+          </Link>
         </li>
         <li className="footer__list-item">
-          <a className="footer__link" href="/">
+          <Link className="footer__link" to="/child_rights">
             права детей
-          </a>
+          </Link>
         </li>
         <li className="footer__list-item">
-          <a className="footer__link" href="/">
+          <Link className="footer__link" to="/stories">
             истории
-          </a>
+          </Link>
         </li>
       </ul>
       <ul className="footer__list footer__list_content_social">
