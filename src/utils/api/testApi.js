@@ -116,14 +116,19 @@ class TestApi {
   // или спрашиваем из какого города пользователь(?) и отправляем id города
 
   getEvents(cityId, token) {
-    mock.onGet(`${URL}/afisha/events/`, {params: { cityId}}).reply(200, responses.events);
+    mock
+      .onGet(`${URL}/afisha/events/`, { params: { cityId } })
+      .reply(200, responses.events);
     return axios
-      .get(`${this._url}/afisha/events/`, {
-        params: { cityId },
-      },
-      {
-        headers: { Authorization: token },
-      })
+      .get(
+        `${this._url}/afisha/events/`,
+        {
+          params: { cityId },
+        },
+        {
+          headers: { Authorization: token },
+        }
+      )
       .then(this._checkResponse);
   }
 
