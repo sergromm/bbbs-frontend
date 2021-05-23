@@ -12,6 +12,8 @@ class TestApi {
     this._url = options;
   }
 
+  // проверка ответа с сервера
+
   // eslint-disable-next-line class-methods-use-this
   _checkResponse(res) {
     // Костыль для проверки что токен был отправлен
@@ -19,6 +21,9 @@ class TestApi {
     if (!res) throw new Error("Не удалось получить данный с сервера");
     return res.data;
   }
+
+  // Запрос авторизации. Отправляем имя и пароль. Получаем в ответ 2 токена.
+  // access для доступа к авторизации refresh для обновления access токена.
 
   authorize(username, password) {
     mock
@@ -31,6 +36,9 @@ class TestApi {
       .then(this._checkResponse);
   }
 
+  // Запрос обновления токена. Отправляем refresh токен, получаем новый access токен
+  // В мокапе придет старый токен, это ок.
+
   refreshToken(token) {
     mock
       .onPost(`${URL}/token/refresh/`, {
@@ -42,15 +50,22 @@ class TestApi {
       .then(this._checkResponse);
   }
 
+  // Запрос списка городов. Аргументы не нужны.
+
   getCities() {
     mock.onGet(`${URL}/cities/`).reply(200, responses.cities);
     return axios.get(`${this._url}/cities/`).then(this._checkResponse);
   }
 
+  // Запрос информации о пользователе. Аргументы не нужын.
+
   getProfile() {
     mock.onGet(`${URL}/profile/`).reply(200, responses.profile);
     return axios.get(`${this._url}/profile/`).then(this._checkResponse);
   }
+
+  // (Функционал админа) Запрос на добавление нового пользователя. Отправляем имя и город.
+  // Получаем профиль принятого пользователя.
 
   addProfile(name, city) {
     mock
@@ -60,6 +75,9 @@ class TestApi {
       .put(`${this._url}/profile/`, { params: { name, city } })
       .then(this._checkResponse);
   }
+
+  // Запрос редактирования профиля. Отправляем новые: имя, город и токен пользователя.
+  // Получаем обновлённый профиль пользователя.
 
   editProfile(name, city, token) {
     mock
@@ -82,23 +100,35 @@ class TestApi {
       .then(this._checkResponse);
   }
 
-  getMainPage(id) {
+  // Запрос данных для главной страницы. Передаём id города.
+  // Получаем главную страницу.
+
+  getMainPage(cityId) {
     mock
-      .onGet(`${URL}/main/`, { params: { id } })
+      .onGet(`${URL}/main/`, { params: { cityId } })
       .reply(200, responses.mainPage);
     return axios
-      .get(`${this._url}/main/`, { params: { id } })
+      .get(`${this._url}/main/`, { params: { cityId } })
       .then(this._checkResponse);
   }
 
-  getEvents(token) {
-    mock.onGet(`${URL}/afisha/events/`).reply(200, responses.events);
+  // Запрос событий передаём id города из профиля пользователя
+  // или спрашиваем из какого города пользователь(?) и отправляем id города
+
+  getEvents(cityId, token) {
+    mock.onGet(`${URL}/afisha/events/`, {params: { cityId}}).reply(200, responses.events);
     return axios
       .get(`${this._url}/afisha/events/`, {
+        params: { cityId },
+      },
+      {
         headers: { Authorization: token },
       })
       .then(this._checkResponse);
   }
+
+  // Запись на событие. Отправляем id события и access token
+  // получаем событие на которое записался пользователь
 
   bookEvent(eventId, token) {
     mock
@@ -111,7 +141,9 @@ class TestApi {
       {
         params: { event: eventId },
       },
-      { headers: { Authorization: token } }
+      {
+        headers: { Authorization: token },
+      }
     );
   }
 }
@@ -120,7 +152,7 @@ const testApi = new TestApi(URL);
 
 // testApi.authorize("admin", "admin").then(console.log);
 // testApi.refreshToken(responses.tokens.refresh).then(console.log);
-// testApi.getCities().then(console.log);
+testApi.getCities().then(console.log);
 // testApi.getProfile().then(console.log);
 // testApi.addProfile("Имя", "Город").then(console.log);
 // testApi
@@ -128,8 +160,8 @@ const testApi = new TestApi(URL);
 //   .then(console.log);
 // testApi.getMainPage(1).then(console.log);
 // testApi.getEvents(responses.tokens.access).then(console.log);
-testApi
-  .bookEvent(1, responses.tokens.access)
-  .then((data) => console.log(data.data));
+// testApi
+//   .bookEvent(1, responses.tokens.access)
+//   .then((data) => console.log(data.data));
 
-export default testApi;
+module.exports = testApi;
