@@ -2,13 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import SignContext from "../../contexts/SignContext";
 
-function EventCard({ isOnMain }) {
+function EventCard({ onZoomEvent, isOnMain, event }) {
   const isLoggedIn = React.useContext(SignContext);
   const data = {
-    booked: true,
     counter: 102,
   };
-
+  console.log(event);
   const wordPlace = (counter) => {
     const num = String(counter);
     switch (num.charAt(num.length - 1)) {
@@ -26,7 +25,7 @@ function EventCard({ isOnMain }) {
   };
 
   const newData = () => {
-    if (isLoggedIn && data.booked)
+    if (isLoggedIn && true)
       return {
         styles: "event__button_active event__button_type_cancel",
         textBtn: "Отменить",
@@ -45,6 +44,10 @@ function EventCard({ isOnMain }) {
     };
   };
 
+  function handleZoom() {
+    onZoomEvent(event);
+  }
+
   return (
     <article className={isOnMain ? "event event_place_index" : "event"}>
       <div className="event__info">
@@ -52,9 +55,7 @@ function EventCard({ isOnMain }) {
         <p className="event__month-and-weekday">декабрь / понедельник</p>
       </div>
       <div className="event__info">
-        <h3 className="event__title event__title_place_card">
-          Субботний meet up: учимся проходить интевью
-        </h3>
+        <h3 className="event__title event__title_place_card">c</h3>
         <p className="event__date">23</p>
       </div>
       <ul className="event__additional-info">
@@ -84,6 +85,7 @@ function EventCard({ isOnMain }) {
           aria-label="Посмотреть детали"
           className="event__button event__button_active
               event__button_type_details"
+          onClick={handleZoom}
         />
       </div>
     </article>
@@ -91,7 +93,13 @@ function EventCard({ isOnMain }) {
 }
 
 EventCard.propTypes = {
+  onZoomEvent: PropTypes.func.isRequired,
   isOnMain: PropTypes.bool.isRequired,
+  event: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    address: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default EventCard;

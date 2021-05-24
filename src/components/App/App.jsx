@@ -9,9 +9,9 @@ import AboutProjectPage from "../AboutProjectPage/AboutProjectPage";
 import ProfilePage from "../ProfilePage/ProfilePage";
 import SignContext from "../../contexts/SignContext";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import Popup from "../Popup/Popup";
-import AuthForm from "../AuthForm/AuthForm";
 import api from "../../utils/api/api";
+import AuthPopup from "../Popup/AuthPopup";
+import EventPopup from "../Popup/EventPopup";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -90,9 +90,12 @@ function App() {
               <ProfilePage path="/profile" />
             </Route>
           </Switch>
-          <Popup isPopupOpen={isPopupOpen} closePopup={closeAllPopups}>
-            <AuthForm onLogin={handleLogin} />
-          </Popup>
+          <AuthPopup
+            isPopupOpen={isPopupOpen}
+            closePopup={closeAllPopups}
+            onLogin={handleLogin}
+          />
+          <EventPopup isPopupOpen={isPopupOpen} closePopup={closeAllPopups} />
           <Footer />
         </div>
       </SignContext.Provider>
