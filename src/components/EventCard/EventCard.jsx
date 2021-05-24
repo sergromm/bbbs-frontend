@@ -1,4 +1,49 @@
+import React from "react";
+import SignContext from "../../contexts/SignContext";
+
 function EventCard() {
+  const isLoggedIn = React.useContext(SignContext);
+  const data = {
+    booked: true,
+    counter: 102,
+  };
+
+  const wordPlace = (counter) => {
+    const num = String(counter);
+    switch (num.charAt(num.length - 1)) {
+      case "1":
+        return "место";
+      case "2":
+        return "места";
+      case "3":
+        return "места";
+      case "4":
+        return "места";
+      default:
+        return "мест";
+    }
+  };
+
+  const newData = () => {
+    if (isLoggedIn && data.booked)
+      return {
+        styles: "event__button_active event__button_type_cancel",
+        textBtn: "Отменить",
+        textCounter: "",
+      };
+    return {
+      styles:
+        data.counter > 0
+          ? "event__button_active event__button_type_signup"
+          : "event__button_disabled",
+      textBtn: "Записаться",
+      textCounter:
+        data.counter > 0
+          ? `Осталось ${data.counter} ${wordPlace(data.counter)}`
+          : "Запись закрыта",
+    };
+  };
+
   return (
     <article className="event">
       <div className="event__info">
@@ -6,9 +51,9 @@ function EventCard() {
         <p className="event__month-and-weekday">декабрь / понедельник</p>
       </div>
       <div className="event__info">
-        <h2 className="event__title event__title_place_card">
+        <h3 className="event__title event__title_place_card">
           Субботний meet up: учимся проходить интевью
-        </h2>
+        </h3>
         <p className="event__date">23</p>
       </div>
       <ul className="event__additional-info">
@@ -26,13 +71,12 @@ function EventCard() {
         <div className="event__signup-container">
           <button
             type="button"
-            aria-label="Записаться"
-            className="event__button event__button_active
-                event__button_type_signup"
+            aria-label={newData().textBtn}
+            className={`event__button ${newData().styles}`}
           >
-            Записаться
+            {newData().textBtn}
           </button>
-          <p className="event__participants-counter">Осталось 5 мест</p>
+          <p className="event__participants-counter">{newData().textCounter}</p>
         </div>
         <button
           type="button"

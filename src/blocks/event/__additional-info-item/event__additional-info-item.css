@@ -4,7 +4,11 @@
     color: #1A1A1A;
     border-bottom: 1px solid #A7A6A6;
   }
-  
+
+.event__additional-info-item:last-child{
+  border: none;
+}
+
   @media screen and (max-width: 420px) {
     .event__additional-info-item {
       margin-bottom: 5px;
