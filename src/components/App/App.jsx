@@ -9,10 +9,10 @@ import SignContext from "../../contexts/SignContext";
 import Profile from "../Profile/Profile";
 import Mesto from "../Mesto/Mesto";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import Popup from "../Popup/Popup";
-import AuthForm from "../AuthForm/AuthForm";
 import api from "../../utils/api/api";
 import CitiesPopup from "../CitiesPopup/CitiesPopup";
+import AuthPopup from "../Popup/AuthPopup";
+import EventPopup from "../Popup/EventPopup";
 
 function App() {
   const [isLoggedIn, setLoggedIn] = React.useState(false);
@@ -103,13 +103,16 @@ function App() {
               <Mesto />
             </Route>
           </Switch>
-          <Popup isPopupOpen={isPopupOpen} closePopup={closeAllPopups}>
-            <AuthForm onLogin={handleLogin} />
-          </Popup>
           <CitiesPopup
             isPopupOpen={isCitiesPopupOpen}
             closePopup={closeAllPopups}
           />
+          <AuthPopup
+            isPopupOpen={isPopupOpen}
+            closePopup={closeAllPopups}
+            onLogin={handleLogin}
+          />
+          <EventPopup isPopupOpen={isPopupOpen} closePopup={closeAllPopups} />
           <Footer />
         </div>
       </SignContext.Provider>
