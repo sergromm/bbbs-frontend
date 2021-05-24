@@ -7,11 +7,11 @@
   grid-template-areas:
     "description description cover-history cover-history"
     "whereToGo whereToGo whereToGo whereToGo"
-    "article-light-blue article-light-blue article-light-blue article-light-blue"
+    "article-first article-first article-first article-first"
     "films films films films"
     "video video video video"
     "frame questions questions questions"
-    "article-green article-green article-green article-green";
+    "article-second article-second article-second article-second";
   gap: 30px;
   box-sizing: border-box;
 }
@@ -22,11 +22,11 @@
     grid-template-areas:
       "description description description cover-history cover-history cover-history"
       "whereToGo whereToGo whereToGo whereToGo whereToGo whereToGo"
-      "article-light-blue article-light-blue article-light-blue article-light-blue article-light-blue article-light-blue"
+      "article-first article-first article-first article-first article-first article-first"
       "films films films films films films"
       "video video video video video video"
       "frame frame questions questions questions questions"
-      "article-green article-green article-green article-green article-green article-green";
+      "article-second article-second article-second article-second article-second article-second";
     padding: 140px 135px 120px;
   }
 }
@@ -43,11 +43,11 @@
     grid-template-areas:
       "description cover-history"
       "whereToGo whereToGo"
-      "article-light-blue article-light-blue"
+      "article-first article-first"
       "films films"
       "video video"
       "frame questions"
-      "article-green article-green";
+      "article-second article-second";
   }
 }
 
@@ -57,11 +57,11 @@
     grid-template-areas:
       "description cover-history"
       "whereToGo whereToGo "
-      "article-light-blue article-light-blue"
+      "article-first article-first"
       "films films"
       "video video"
       "frame questions"
-      "article-green article-green ";
+      "article-second article-second";
   }
 }
 
@@ -73,8 +73,16 @@
 
 @media screen and (max-width: 630px) {
   .main-grid {
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "description"
+      "cover-history"
+      "whereToGo"
+      "article-first"
+      "films"
+      "video"
+      "frame"
+      "questions"
+      "article-second";
   }
 }

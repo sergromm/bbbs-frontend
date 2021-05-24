@@ -35,5 +35,7 @@
 @import url("../blocks/search/__result-link/search__result-link.css");
 @import url("../blocks/profile-ico/profile-ico.css");
 @import url("../blocks/profile-ico/_visible/profile-ico_visible.css");
+@import url("../blocks/profile-ico/_state/profile-ico_state_not-authorized.css");
+@import url("../blocks/profile-ico/_state/profile-ico_state_authorized.css");
 /***********ИМПОРТЫ ДЛЯ ХЭДЕРА**************/
 /*******************END*********************/

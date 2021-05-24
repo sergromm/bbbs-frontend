@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 function Poster({ title, subtitle, image }) {
   return (
-    <li className="poster__item poster__item_screen_tablet">
+    <li className="poster__item">
       <div className="poster__layer">
         <img className="poster__image" src={image} alt="постер" />
         <div className="poster__categories">

@@ -1,9 +1,17 @@
 import PropTypes from "prop-types";
 
-function DescribeArticle({ color, text }) {
+function DescribeArticle({ color, title, arrayIndex }) {
+  const articleClassNames = () =>
+    arrayIndex === 0
+      ? "describe-article describe-article_postion_first"
+      : "describe-article describe-article_position_second";
+
   return (
-    <section className={`describe-article ${color}`}>
-      <h2 className="describe-article__text">{text}</h2>
+    <section
+      style={{ backgroundColor: `${color}` }}
+      className={articleClassNames()}
+    >
+      <h2 className="describe-article__text">{title}</h2>
       <a className="describe-article__link" href="./pages/guide-paper.html">
         читать статью
       </a>
@@ -13,7 +21,8 @@ function DescribeArticle({ color, text }) {
 
 DescribeArticle.propTypes = {
   color: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  arrayIndex: PropTypes.number.isRequired,
 };
 
 export default DescribeArticle;

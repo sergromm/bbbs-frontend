@@ -1,12 +1,11 @@
 .poster {
-    grid-area: films;
-    width: 100%;
-    margin: 0;
+  grid-area: films;
+  width: 100%;
+  margin: 0;
 }
 
 @media screen and (max-width: 630px) {
-    .poster {
-        width: auto;
-    }
+  .poster {
+    width: auto;
+  }
 }
-

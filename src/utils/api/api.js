@@ -7,7 +7,7 @@ const responses = require("./mockResponses");
 const mock = new MockAdapter(axios);
 
 const URL = "http://127.0.0.1:8000/api/v1";
-class TestApi {
+class Api {
   constructor(options) {
     this._url = options;
   }
@@ -153,11 +153,11 @@ class TestApi {
   }
 }
 
-const testApi = new TestApi(URL);
+const api = new Api(URL);
 
 // testApi.authorize("admin", "admin").then(console.log);
 // testApi.refreshToken(responses.tokens.refresh).then(console.log);
-testApi.getCities().then(console.log);
+// api.getCities().then(console.log);
 // testApi.getProfile().then(console.log);
 // testApi.addProfile("Имя", "Город").then(console.log);
 // testApi
@@ -169,4 +169,4 @@ testApi.getCities().then(console.log);
 //   .bookEvent(1, responses.tokens.access)
 //   .then((data) => console.log(data.data));
 
-module.exports = testApi;
+module.exports = api;
