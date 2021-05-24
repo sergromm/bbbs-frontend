@@ -52,7 +52,6 @@ function Header({ onProfileIconClick }) {
       } else {
         setHeaderVisible(false);
       }
-
       prevScrollpos = currentScrollPos;
     };
 

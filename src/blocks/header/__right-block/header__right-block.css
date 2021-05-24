@@ -8,7 +8,7 @@
   margin-left: 77px;
 }
 
-@media screen and (max-width: 1373px) {
+@media screen and (max-width: 1370px) {
   .header__right-block {
     margin-left: 0;
     width: 60px;
