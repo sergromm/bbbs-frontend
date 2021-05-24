@@ -24,7 +24,7 @@ function Navigation({ isSearchOpen, isMenuOpen }) {
       <div className="nav-list__container">
         <ul className="nav-list__items nav-list__items_content_navigation">
           <li className="nav-list__item">
-            <Link to="./calendar" className="nav-list__link">
+            <Link to="/calendar" className="nav-list__link">
               календарь
             </Link>
           </li>
