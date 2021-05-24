@@ -1,39 +1,39 @@
 .main-grid {
   margin: 0 auto;
   width: 100%;
-  padding: 140px 75px 120px;
+  padding: 40px 75px 120px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-areas:
     "description description cover-history cover-history"
     "whereToGo whereToGo whereToGo whereToGo"
-    "article-light-blue article-light-blue article-light-blue article-light-blue"
+    "article-first article-first article-first article-first"
     "films films films films"
     "video video video video"
     "frame questions questions questions"
-    "article-green article-green article-green article-green";
+    "article-second article-second article-second article-second";
   gap: 30px;
   box-sizing: border-box;
 }
 
 @media screen and (max-width: 1441px) {
   .main-grid {
+    padding: 40px 135px 120px;
     grid-template-columns: repeat(6, 1fr);
     grid-template-areas:
       "description description description cover-history cover-history cover-history"
       "whereToGo whereToGo whereToGo whereToGo whereToGo whereToGo"
-      "article-light-blue article-light-blue article-light-blue article-light-blue article-light-blue article-light-blue"
+      "article-first article-first article-first article-first article-first article-first"
       "films films films films films films"
       "video video video video video video"
       "frame frame questions questions questions questions"
-      "article-green article-green article-green article-green article-green article-green";
-    padding: 140px 135px 120px;
+      "article-second article-second article-second article-second article-second article-second";
   }
 }
 
 @media screen and (max-width: 1373px) {
   .main-grid {
-    padding: 120px 135px 120px;
+    padding: 0 135px 120px;
   }
 }
 
@@ -43,38 +43,47 @@
     grid-template-areas:
       "description cover-history"
       "whereToGo whereToGo"
-      "article-light-blue article-light-blue"
+      "article-first article-first"
       "films films"
       "video video"
       "frame questions"
-      "article-green article-green";
+      "article-second article-second";
   }
 }
 
 @media screen and (max-width: 1025px) {
   .main-grid {
+    padding: 0 127px 120px;
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas:
       "description cover-history"
       "whereToGo whereToGo "
-      "article-light-blue article-light-blue"
+      "article-first article-first"
       "films films"
       "video video"
       "frame questions"
-      "article-green article-green ";
+      "article-second article-second";
   }
 }
 
 @media screen and (max-width: 940px) {
   .main-grid {
-    padding: 80px 15px 50px;
+    padding: 10px 15px 50px;
   }
 }
 
 @media screen and (max-width: 630px) {
   .main-grid {
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "description"
+      "cover-history"
+      "whereToGo"
+      "article-first"
+      "films"
+      "video"
+      "frame"
+      "questions"
+      "article-second";
   }
 }

@@ -8,7 +8,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   transition: 0.5s cubic-bezier(0.7, 0.2, 0.2, 0.7);
@@ -24,17 +24,22 @@
   }
 }
 
-@media screen and (max-width: 1373px) {
+@media screen and (max-width: 1370px) {
+  .header {
+    padding: 30px 135px;
+    flex-direction: row-reverse;
+  }
+}
+
+@media screen and (max-width: 1025px) {
   .header {
     padding: 30px 127px;
-    min-height: 90px;
-    flex-direction: row-reverse;
   }
 }
 
 @media screen and (max-width: 940px) {
   .header {
     min-height: 50px;
-    padding: 10px 15px;
+    padding: 0 15px;
   }
 }
