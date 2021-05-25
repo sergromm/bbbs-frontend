@@ -18,7 +18,7 @@ function App() {
   const [isLoggedIn, setLoggedIn] = React.useState(false);
   const [isPopupOpen, setPopupOpen] = useState(false);
   const [isCitiesPopupOpen, setCitiesPopupOpen] = useState(false);
-  const [cities] = useState([{ id: 0, city: "" }]);
+
   const [currentUser, setCurrentUser] = useState({
     name: "",
     city: "",
@@ -107,7 +107,6 @@ function App() {
             <AuthForm onLogin={handleLogin} />
           </Popup>
           <CitiesPopup
-            cities={cities}
             isPopupOpen={isCitiesPopupOpen}
             closePopup={closeAllPopups}
           />

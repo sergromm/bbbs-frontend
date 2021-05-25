@@ -105,10 +105,10 @@ function Header({
 
 Header.propTypes = {
   onProfileIconClick: PropTypes.shape({
-    handlers: {
+    handlers: PropTypes.shape({
       handleOpenPopup: PropTypes.func.isRequired,
       handleOpenCitiesPopup: PropTypes.func.isRequired,
-    },
+    }),
   }).isRequired,
 };
 
