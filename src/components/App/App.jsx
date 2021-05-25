@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -11,8 +11,8 @@ import AboutProjectPage from "../AboutProjectPage/AboutProjectPage";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import api from "../../utils/api/api";
 import CitiesPopup from "../CitiesPopup/CitiesPopup";
-import AuthPopup from "../Popups/AuthPopup";
-import EventPopup from "../Popups/EventPopup";
+import AuthPopup from "../Popup/AuthPopup";
+import EventPopup from "../Popup/EventPopup";
 
 function App() {
   const [isCitiesPopupOpen, setCitiesPopupOpen] = useState(false);
