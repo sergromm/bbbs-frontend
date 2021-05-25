@@ -25,10 +25,6 @@ function App() {
     isLoggedIn,
   });
 
-  const handleOpenCitiesPopup = () => {
-    setCitiesPopupOpen(true);
-  };
-
   const handleOpenPopup = () => {
     setPopupOpen(true);
   };
@@ -84,11 +80,7 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <SignContext.Provider value={isLoggedIn}>
         <div className="App">
-          <Header
-            onProfileIconClick={{
-              handlers: { handleOpenPopup, handleOpenCitiesPopup },
-            }}
-          />
+          <Header onProfileIconClick={handleOpenPopup} />
           <Switch>
             <Route exact path="/">
               <MainPage />

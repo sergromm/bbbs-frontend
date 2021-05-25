@@ -1,17 +1,12 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Logo from "./Logo/Logo";
 import Navigation from "./Navigation/Navigation";
 import ProfileIcon from "./ProfileIcon/ProfileIcon";
 import Search from "./Search/Search";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function Header({
-  onProfileIconClick: {
-    handlers: { handleOpenPopup, handleOpenCitiesPopup },
-  },
-}) {
-  const currentUser = useContext(CurrentUserContext);
+function Header({ onProfileIconClick }) {
+  console.log(onProfileIconClick);
   const [isSearchOpen, setSearchOpen] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isProfileIconVisible, setProfileIconVisible] = useState(false);
@@ -94,9 +89,7 @@ function Header({
         />
         <ProfileIcon
           isVisible={isProfileIconVisible}
-          handleClick={
-            currentUser.isLoggedIn ? handleOpenCitiesPopup : handleOpenPopup
-          }
+          handleClick={onProfileIconClick}
         />
       </div>
     </header>
@@ -104,12 +97,7 @@ function Header({
 }
 
 Header.propTypes = {
-  onProfileIconClick: PropTypes.shape({
-    handlers: PropTypes.shape({
-      handleOpenPopup: PropTypes.func.isRequired,
-      handleOpenCitiesPopup: PropTypes.func.isRequired,
-    }),
-  }).isRequired,
+  onProfileIconClick: PropTypes.func.isRequired,
 };
 
 export default Header;
