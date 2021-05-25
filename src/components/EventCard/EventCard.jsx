@@ -48,7 +48,7 @@ function EventCard({ isOnMain, event }) {
   //   onZoomEvent(event);
   // }
 
-  return event ? (
+  return (
     <article className={isOnMain ? "event event_place_index" : "event"}>
       <div className="event__info">
         <p className="event__group">Волонтёры + дети</p>
@@ -88,8 +88,6 @@ function EventCard({ isOnMain, event }) {
         />
       </div>
     </article>
-  ) : (
-    <></>
   );
 }
 
