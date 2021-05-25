@@ -8,6 +8,8 @@ import CalendarPage from "../CalendarPage/CalendarPage";
 import AboutProjectPage from "../AboutProjectPage/AboutProjectPage";
 import ProfilePage from "../ProfilePage/ProfilePage";
 import SignContext from "../../contexts/SignContext";
+import Profile from "../Profile/Profile";
+import Mesto from "../Mesto/Mesto";
 
 function App() {
   const [isLoggedIn] = React.useState(false);
@@ -20,8 +22,14 @@ function App() {
           <Route exact path="/">
             <MainPage />
           </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
           <Route path="/calendar">
             <CalendarPage />
+          </Route>
+          <Route path="/mesto">
+            <Mesto />
           </Route>
           <Route>
             <AboutProjectPage path="/about-project" />
