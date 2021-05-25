@@ -7,7 +7,7 @@ import MainPage from "../MainPage/MainPage";
 import CalendarPage from "../CalendarPage/CalendarPage";
 import AboutProjectPage from "../AboutProjectPage/AboutProjectPage";
 import SignContext from "../../contexts/SignContext";
-import Profile from "../Profile/Profile";
+import Account from "../Account/Account";
 import Mesto from "../Mesto/Mesto";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import Popup from "../Popup/Popup";
@@ -101,7 +101,7 @@ function App() {
               <AboutProjectPage path="/about-project" />
             </Route>
             <Route path="/profile">
-              <Profile />
+              <Account />
             </Route>
             <Route path="/mesto">
               <Mesto />
