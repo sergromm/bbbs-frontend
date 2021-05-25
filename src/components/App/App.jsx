@@ -11,8 +11,8 @@ import Mesto from "../Mesto/Mesto";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import api from "../../utils/api/api";
 import CitiesPopup from "../CitiesPopup/CitiesPopup";
-import AuthPopup from "../Popup/AuthPopup";
-import EventPopup from "../Popup/EventPopup";
+import AuthPopup from "../Popups/AuthPopup";
+import EventPopup from "../Popups/EventPopup";
 
 function App() {
   const [isLoggedIn, setLoggedIn] = React.useState(false);

@@ -2,12 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import SignContext from "../../contexts/SignContext";
 
-function EventCard({ onZoomEvent, isOnMain, event }) {
+function EventCard({ isOnMain, event }) {
   const isLoggedIn = React.useContext(SignContext);
   const data = {
     counter: 102,
   };
-  console.log(event);
+
   const wordPlace = (counter) => {
     const num = String(counter);
     switch (num.charAt(num.length - 1)) {
@@ -25,7 +25,7 @@ function EventCard({ onZoomEvent, isOnMain, event }) {
   };
 
   const newData = () => {
-    if (isLoggedIn && true)
+    if (isLoggedIn && event.booked)
       return {
         styles: "event__button_active event__button_type_cancel",
         textBtn: "Отменить",
@@ -44,18 +44,18 @@ function EventCard({ onZoomEvent, isOnMain, event }) {
     };
   };
 
-  function handleZoom() {
-    onZoomEvent(event);
-  }
+  // function handleZoom() {
+  //   onZoomEvent(event);
+  // }
 
-  return (
+  return event ? (
     <article className={isOnMain ? "event event_place_index" : "event"}>
       <div className="event__info">
         <p className="event__group">Волонтёры + дети</p>
         <p className="event__month-and-weekday">декабрь / понедельник</p>
       </div>
       <div className="event__info">
-        <h3 className="event__title event__title_place_card">c</h3>
+        <h3 className="event__title event__title_place_card">event.title</h3>
         <p className="event__date">23</p>
       </div>
       <ul className="event__additional-info">
@@ -85,20 +85,25 @@ function EventCard({ onZoomEvent, isOnMain, event }) {
           aria-label="Посмотреть детали"
           className="event__button event__button_active
               event__button_type_details"
-          onClick={handleZoom}
         />
       </div>
     </article>
+  ) : (
+    <></>
   );
 }
 
+EventCard.defaultProps = {
+  isOnMain: false,
+};
+
 EventCard.propTypes = {
-  onZoomEvent: PropTypes.func.isRequired,
-  isOnMain: PropTypes.bool.isRequired,
+  isOnMain: PropTypes.bool,
   event: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     address: PropTypes.string.isRequired,
+    booked: PropTypes.bool.isRequired,
   }).isRequired,
 };
 

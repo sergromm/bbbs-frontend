@@ -164,7 +164,7 @@ const api = new Api(URL);
 //   .editProfile("Новое Имя", "Новый Город", responses.tokens.access)
 //   .then(console.log);
 // testApi.getMainPage(1).then(console.log);
-// api.getEvents(1, responses.tokens.access).then(console.log);
+// api.getEvents(responses.tokens.access).then(console.log);
 // testApi
 //   .bookEvent(1, responses.tokens.access)
 //   .then((data) => console.log(data.data));
