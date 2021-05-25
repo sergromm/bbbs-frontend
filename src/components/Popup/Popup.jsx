@@ -5,7 +5,7 @@ function Popup({ isPopupOpen, closePopup, children }) {
   return (
     <div
       className={`${popupStyle(isPopupOpen)}
-       'popup_content_authorization-form'`}
+       popup_content_authorization-form`}
     >
       <div className="popup__container">
         {children}

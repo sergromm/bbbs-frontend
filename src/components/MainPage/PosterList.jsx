@@ -35,7 +35,31 @@ PosterList.propTypes = {
         })
       ),
     })
-  ).isRequired,
+  ),
+};
+
+PosterList.defaultProps = {
+  movies: [
+    {
+      id: 51,
+      imageUrl: "https://picsum.photos/420/239",
+      title: "Жутко громко и запредельно близко",
+      info: "Василий Сигарев, Борисов-Мусотов (Россия), 2009 год",
+      link: "https://youtu.be/8VzzlhOyOSI",
+      tags: [
+        {
+          id: 551,
+          name: "рубрика",
+          slug: "rubric",
+        },
+        {
+          id: 552,
+          name: "рубрика",
+          slug: "rubric",
+        },
+      ],
+    },
+  ],
 };
 
 export default PosterList;

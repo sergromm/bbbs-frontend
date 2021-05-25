@@ -2,11 +2,11 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 
 function AuthForm({ onLogin }) {
-  const [username, setLogin] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleUsernameChange = (evt) => {
-    setLogin(evt.target.value);
+    setUsername(evt.target.value);
   };
 
   const handlePasswordChange = (evt) => {

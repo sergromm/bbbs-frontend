@@ -13,33 +13,41 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import Popup from "../Popup/Popup";
 import AuthForm from "../AuthForm/AuthForm";
 import api from "../../utils/api/api";
+import CitiesPopup from "../CitiesPopup/CitiesPopup";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isLoggedIn, setLoggedIn] = React.useState(false);
+  const [isPopupOpen, setPopupOpen] = useState(false);
+  const [isCitiesPopupOpen, setCitiesPopupOpen] = useState(false);
+  const [cities, setCities] = useState([{ id: 0, city: "" }]);
   const [currentUser, setCurrentUser] = useState({
     name: "",
     city: "",
     isLoggedIn,
   });
 
-  const handleProfileIconClick = () => {
-    setIsPopupOpen(true);
+  const handleOpenCitiesPopup = () => {
+    setCitiesPopupOpen(true);
+  };
+
+  const handleOpenPopup = () => {
+    setPopupOpen(true);
   };
 
   const closeAllPopups = () => {
-    setIsPopupOpen(false);
+    setPopupOpen(false);
+    setCitiesPopupOpen(false);
   };
 
   const saveToLocalStorage = (name, value) => localStorage.setItem(name, value);
 
   const handleLogin = ({ username, password }) => {
     api.authorize(username, password).then(({ refresh, access }) => {
-      setIsLoggedIn(true);
+      setLoggedIn(true);
       saveToLocalStorage("refresh", refresh);
       saveToLocalStorage("access", access);
       setCurrentUser({
-        isLoggedIn,
+        isLoggedIn: true,
       });
       closeAllPopups();
     });
@@ -56,9 +64,12 @@ function App() {
             city: res.city,
             isLoggedIn: true,
           });
-          setIsLoggedIn(true);
+          setLoggedIn(true);
         })
         .catch(new Error());
+    } else {
+      api.getCities().then(setCities).catch(new Error());
+      setCitiesPopupOpen(true);
     }
   }, []);
 
@@ -71,31 +82,44 @@ function App() {
   // }
 
   // const history = useHistory();
-
   return (
-    <SignContext.Provider value={isLoggedIn}>
-      <div className="App">
-        <Header />
-        <Switch>
-          <Route exact path="/">
-            <MainPage />
-          </Route>
-          <Route path="/profile">
-            <Profile />
-          </Route>
-          <Route path="/calendar">
-            <CalendarPage />
-          </Route>
-          <Route path="/mesto">
-            <Mesto />
-          </Route>
-          <Route>
-            <AboutProjectPage path="/about-project" />
-          </Route>
-        </Switch>
-        <Footer />
-      </div>
-    </SignContext.Provider>
+    <CurrentUserContext.Provider value={currentUser}>
+      <SignContext.Provider value={isLoggedIn}>
+        <div className="App">
+          <Header
+            onProfileIconClick={{
+              handlers: { handleOpenPopup, handleOpenCitiesPopup },
+            }}
+          />
+          <Switch>
+            <Route exact path="/">
+              <MainPage />
+            </Route>
+            <Route path="/calendar">
+              <CalendarPage />
+            </Route>
+            <Route>
+              <AboutProjectPage path="/about-project" />
+            </Route>
+            <Route path="/profile">
+              <Profile />
+            </Route>
+            <Route path="/mesto">
+              <Mesto />
+            </Route>
+          </Switch>
+          <Popup isPopupOpen={isPopupOpen} closePopup={closeAllPopups}>
+            <AuthForm onLogin={handleLogin} />
+          </Popup>
+          <CitiesPopup
+            cities={cities}
+            isPopupOpen={isCitiesPopupOpen}
+            closePopup={closeAllPopups}
+          />
+          <Footer />
+        </div>
+      </SignContext.Provider>
+    </CurrentUserContext.Provider>
   );
 }
 
