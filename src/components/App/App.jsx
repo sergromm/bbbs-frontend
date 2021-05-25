@@ -19,7 +19,7 @@ function App() {
   const [isLoggedIn, setLoggedIn] = React.useState(false);
   const [isPopupOpen, setPopupOpen] = useState(false);
   const [isCitiesPopupOpen, setCitiesPopupOpen] = useState(false);
-  const [cities, setCities] = useState([{ id: 0, city: "" }]);
+  const [cities] = useState([{ id: 0, city: "" }]);
   const [currentUser, setCurrentUser] = useState({
     name: "",
     city: "",
@@ -68,7 +68,6 @@ function App() {
         })
         .catch(new Error());
     } else {
-      api.getCities().then(setCities).catch(new Error());
       setCitiesPopupOpen(true);
     }
   }, []);
