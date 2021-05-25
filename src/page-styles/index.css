@@ -4,7 +4,13 @@
 @import url("./header.css");
 @import url("./calendar.css");
 @import url("./footer.css");
-
+/* стили для попапа с городами */
+@import url("../blocks/cities/cities.css");
+@import url("../blocks/cities/__item/cities__item.css");
+@import url("../blocks/cities/__link/cities__link.css");
+@import url("../blocks/cities/__list/cities__list.css");
+@import url("../blocks/cities/__title/cities__title.css");
+/* стили попапа */
 @import url("../blocks/popup/popup.css");
 @import url("../blocks/popup/__container/popup__container.css");
 @import url("../blocks/popup/__close/popup__close.css");

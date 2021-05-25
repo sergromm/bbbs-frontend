@@ -12,36 +12,48 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import Popup from "../Popup/Popup";
 import AuthForm from "../AuthForm/AuthForm";
 import api from "../../utils/api/api";
+import CitiesPopup from "../CitiesPopup/CitiesPopup";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isLoggedIn, setLoggedIn] = React.useState(false);
+  const [isPopupOpen, setPopupOpen] = useState(false);
+  const [isCitiesPopupOpen, setCitiesPopupOpen] = useState(false);
+  const [cities, setCities] = useState([{ id: 0, city: "" }]);
   const [currentUser, setCurrentUser] = useState({
     name: "",
     city: "",
     isLoggedIn,
   });
 
-  const handleProfileIconClick = () => {
-    setIsPopupOpen(true);
+  const handleOpenCitiesPopup = () => {
+    setCitiesPopupOpen(true);
+  };
+
+  const handleOpenPopup = () => {
+    setPopupOpen(true);
   };
 
   const closeAllPopups = () => {
-    setIsPopupOpen(false);
+    setPopupOpen(false);
+    setCitiesPopupOpen(false);
   };
 
   const saveToLocalStorage = (name, value) => localStorage.setItem(name, value);
 
   const handleLogin = ({ username, password }) => {
     api.authorize(username, password).then(({ refresh, access }) => {
-      setIsLoggedIn(true);
+      setLoggedIn(true);
       saveToLocalStorage("refresh", refresh);
       saveToLocalStorage("access", access);
       setCurrentUser({
-        isLoggedIn,
+        isLoggedIn: true,
       });
       closeAllPopups();
     });
+  };
+
+  const getCities = () => {
+    api.getCities().then(setCities).catch(console.log);
   };
 
   useEffect(() => {
@@ -55,11 +67,14 @@ function App() {
             city: res.city,
             isLoggedIn: true,
           });
-          setIsLoggedIn(true);
+          setLoggedIn(true);
         })
         .catch(new Error());
+    } else {
+      getCities();
+      setCitiesPopupOpen(true);
     }
-  }, []);
+  }, [currentUser]);
 
   // const removeFromLocalStorage = (name) => localStorage.removeItem(name);
 
@@ -70,12 +85,15 @@ function App() {
   // }
 
   // const history = useHistory();
-
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <SignContext.Provider value={isLoggedIn}>
         <div className="App">
-          <Header onProfileIconClick={handleProfileIconClick} />
+          <Header
+            onProfileIconClick={{
+              handlers: { handleOpenPopup, handleOpenCitiesPopup },
+            }}
+          />
           <Switch>
             <Route exact path="/">
               <MainPage />
@@ -93,6 +111,11 @@ function App() {
           <Popup isPopupOpen={isPopupOpen} closePopup={closeAllPopups}>
             <AuthForm onLogin={handleLogin} />
           </Popup>
+          <CitiesPopup
+            cities={cities}
+            isPopupOpen={isCitiesPopupOpen}
+            closePopup={closeAllPopups}
+          />
           <Footer />
         </div>
       </SignContext.Provider>
