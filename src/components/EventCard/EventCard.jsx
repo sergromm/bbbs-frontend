@@ -1,11 +1,21 @@
 import React from "react";
+import { parseISO, format } from "date-fns";
+import { ru } from "date-fns/locale";
 import PropTypes from "prop-types";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function EventCard({ isOnMain, onZoomEvent, event }) {
+function EventCard({ isOnMain, onZoomEvent, event, children }) {
   const { isLoggedIn } = React.useContext(CurrentUserContext);
+  const dayWeek = format(parseISO(event.startAt), "EEEE", { locale: ru });
+  const month = format(parseISO(event.startAt), "LLLL", {
+    locale: ru,
+  });
+  const date = format(parseISO(event.startAt), "d", { locale: ru });
+  const startHour = format(parseISO(event.startAt), "H", { locale: ru });
+  const endHour = format(parseISO(event.endAt), "H", { locale: ru });
+  const startMinutes = format(parseISO(event.startAt), "mm", { locale: ru });
+  const endMinutes = format(parseISO(event.endAt), "mm", { locale: ru });
 
-  console.log(event.startAt);
   const counter = event.seats - event.takenSeats;
 
   const wordPlace = () => {
@@ -22,25 +32,6 @@ function EventCard({ isOnMain, onZoomEvent, event }) {
       default:
         return "мест";
     }
-  };
-
-  const data = () => {
-    const arr = event.startAt.split("-");
-    const mounthNumber = Number(arr[1]);
-    console.log(arr);
-    const mounthes = [
-      "январь",
-      "февраль",
-      "март",
-      "апрель",
-      "май",
-      "июнь",
-      "июль",
-    ];
-    return {
-      day: 1,
-      mounth: mounthes[mounthNumber + 1],
-    };
   };
 
   const newData = () => {
@@ -70,25 +61,26 @@ function EventCard({ isOnMain, onZoomEvent, event }) {
       <div className="event__info">
         <p className="event__group">Волонтёры + дети</p>
         <p className="event__month-and-weekday">
-          {data().mounth} / понедельник
+          {month} / {dayWeek}
         </p>
       </div>
       <div className="event__info">
         <h3 className="event__title event__title_place_card">{event.title}</h3>
-        <p className="event__date">23</p>
+        <p className="event__date">{date}</p>
       </div>
       <ul className="event__additional-info">
         <li className="event__additional-info-item event__additional-info-item_type_time">
-          12:00–14:00
+          {startHour}:{startMinutes}–{endHour}:{endMinutes}
         </li>
         <li className="event__additional-info-item event__additional-info-item_type_place">
-          Садовническая наб., д. 77 стр. 1 (офис компании Ernst&Young)
+          {event.address}
         </li>
         <li className="event__additional-info-item event__additional-info-item_type_contact-person">
           {event.contact}
         </li>
       </ul>
       <div className="event__controls">
+        {children}
         <div className="event__signup-container">
           <button
             type="button"
@@ -104,7 +96,7 @@ function EventCard({ isOnMain, onZoomEvent, event }) {
           aria-label="Посмотреть детали"
           className="event__button event__button_active
               event__button_type_details"
-          onZoomEvent={handleZoom}
+          onClick={handleZoom}
         />
       </div>
     </article>
@@ -114,6 +106,7 @@ function EventCard({ isOnMain, onZoomEvent, event }) {
 EventCard.defaultProps = {
   isOnMain: false,
   onZoomEvent: null,
+  children: <></>,
   // дефолтное значание события, которое будет подставлено если нет ответа с сервера
   event: {
     id: 1,
@@ -133,6 +126,7 @@ EventCard.defaultProps = {
 EventCard.propTypes = {
   isOnMain: PropTypes.bool,
   onZoomEvent: PropTypes.func,
+  children: PropTypes.element,
   event: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -142,6 +136,7 @@ EventCard.propTypes = {
     seats: PropTypes.number.isRequired,
     takenSeats: PropTypes.number.isRequired,
     startAt: PropTypes.string.isRequired,
+    endAt: PropTypes.string.isRequired,
   }),
 };
 

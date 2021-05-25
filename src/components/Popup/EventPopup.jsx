@@ -6,7 +6,9 @@ function EventPopup({ isPopupOpen, closePopup, event }) {
   return (
     <Popup isPopupOpen={isPopupOpen} closePopup={closePopup}>
       <div className="calendar-modal__content">
-        {event && <EventCard event={event} />}
+        <EventCard event={event}>
+          <p className="calendar-modal__description">{event.description}</p>
+        </EventCard>
       </div>
     </Popup>
   );
@@ -41,6 +43,8 @@ EventPopup.propTypes = {
     seats: PropTypes.number.isRequired,
     takenSeats: PropTypes.number.isRequired,
     startAt: PropTypes.string.isRequired,
+    endAt: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
   }),
 };
 

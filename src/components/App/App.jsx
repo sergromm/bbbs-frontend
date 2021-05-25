@@ -88,7 +88,10 @@ function App() {
             <MainPage />
           </Route>
           <Route path="/calendar">
-            <CalendarPage onZoomEvent={handleEventCardClick} />
+            <CalendarPage
+              onZoomEvent={handleEventCardClick}
+              isEventPopupOpen={isEventPopupOpen}
+            />
           </Route>
           <Route path="/profile">
             <Profile />

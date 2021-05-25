@@ -4,7 +4,7 @@ import EventCard from "../EventCard/EventCard";
 import api from "../../utils/api/api";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function CalendarPage({ onZoomEvent }) {
+function CalendarPage({ onZoomEvent, isEventPopupOpen }) {
   const { city } = React.useContext(CurrentUserContext);
   const token = localStorage.getItem("access");
   const [events, setEvents] = React.useState();
@@ -36,7 +36,12 @@ function CalendarPage({ onZoomEvent }) {
         {/* рендерим карточку, только если пришел ответ с массивом карточек */}
         {events &&
           events.map((event) => (
-            <EventCard key={event.id} event={event} onZoomEvent={onZoomEvent} />
+            <EventCard
+              key={event.id}
+              event={event}
+              onZoomEvent={onZoomEvent}
+              isEventPopupOpen={isEventPopupOpen}
+            />
           ))}
       </section>
     </main>
@@ -45,6 +50,7 @@ function CalendarPage({ onZoomEvent }) {
 
 CalendarPage.propTypes = {
   onZoomEvent: PropTypes.func.isRequired,
+  isEventPopupOpen: PropTypes.bool.isRequired,
 };
 
 export default CalendarPage;
