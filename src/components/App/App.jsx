@@ -10,8 +10,8 @@ import ProfilePage from "../ProfilePage/ProfilePage";
 import SignContext from "../../contexts/SignContext";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import api from "../../utils/api/api";
-import AuthPopup from "../Popup/AuthPopup";
-import EventPopup from "../Popup/EventPopup";
+import AuthPopup from "../Popups/AuthPopup";
+import EventPopup from "../Popups/EventPopup";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
