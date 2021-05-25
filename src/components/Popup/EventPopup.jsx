@@ -6,7 +6,7 @@ function EventPopup({ isPopupOpen, closePopup, event }) {
   return (
     <Popup isPopupOpen={isPopupOpen} closePopup={closePopup}>
       {event && (
-        <EventCard event={event}>
+        <EventCard event={event} btnStyle="event__button_unvisible">
           <p className="calendar-modal__description">{event.description}</p>
         </EventCard>
       )}

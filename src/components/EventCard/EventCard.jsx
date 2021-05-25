@@ -4,7 +4,7 @@ import { ru } from "date-fns/locale";
 import PropTypes from "prop-types";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function EventCard({ isOnMain, onZoomEvent, event, children }) {
+function EventCard({ isOnMain, onZoomEvent, event, children, btnStyle }) {
   const { isLoggedIn } = React.useContext(CurrentUserContext);
   const dayWeek = format(parseISO(event.startAt), "EEEE", { locale: ru });
   const month = format(parseISO(event.startAt), "LLLL", {
@@ -94,8 +94,8 @@ function EventCard({ isOnMain, onZoomEvent, event, children }) {
         <button
           type="button"
           aria-label="Посмотреть детали"
-          className="event__button event__button_active
-              event__button_type_details"
+          className={`event__button event__button_active
+              event__button_type_details ${btnStyle}`}
           onClick={handleZoom}
         />
       </div>
@@ -107,6 +107,7 @@ EventCard.defaultProps = {
   isOnMain: false,
   onZoomEvent: null,
   children: <></>,
+  btnStyle: "",
   // дефолтное значание события, которое будет подставлено если нет ответа с сервера
   event: {
     id: 1,
@@ -127,6 +128,7 @@ EventCard.propTypes = {
   isOnMain: PropTypes.bool,
   onZoomEvent: PropTypes.func,
   children: PropTypes.element,
+  btnStyle: PropTypes.string,
   event: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,

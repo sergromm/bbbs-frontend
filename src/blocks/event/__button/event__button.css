@@ -7,15 +7,15 @@
   letter-spacing: 0.2px;
   white-space: nowrap;
 }
-  
+
 @media screen and (max-width: 1024px) {
   .event__button {
-    max-height: 40x;
+    max-height: 40px;
     font-size: 12px;
     line-height: 1.42;
   }
 }
-  
+
 @media screen and (max-width: 423px) {
   .event__button {
     padding: 11px 15px 12px;
