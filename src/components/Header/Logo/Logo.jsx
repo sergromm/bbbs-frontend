@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
+
 function Logo() {
   return (
-    <a className="logo" href="/">
+    <Link className="logo" to="/">
       наставники.про
-    </a>
+    </Link>
   );
 }
 

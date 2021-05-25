@@ -7,7 +7,6 @@ import MainPage from "../MainPage/MainPage";
 import CalendarPage from "../CalendarPage/CalendarPage";
 import Profile from "../Profile/Profile";
 import Mesto from "../Mesto/Mesto";
-import AboutProjectPage from "../AboutProjectPage/AboutProjectPage";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import api from "../../utils/api/api";
 import CitiesPopup from "../CitiesPopup/CitiesPopup";
@@ -16,7 +15,7 @@ import EventPopup from "../Popup/EventPopup";
 
 function App() {
   const [isCitiesPopupOpen, setCitiesPopupOpen] = useState(false);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isAuthPopupOpen, setIsAuthPopupOpen] = useState(false);
   const [isEventPopupOpen, setIsEventPopupOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [currentUser, setCurrentUser] = useState({
@@ -25,12 +24,8 @@ function App() {
     isLoggedIn: false,
   });
 
-  const handleOpenCitiesPopup = () => {
-    setCitiesPopupOpen(true);
-  };
-
-  const handleOpenPopup = () => {
-    setIsPopupOpen(true);
+  const handleProfileIconClick = () => {
+    setIsAuthPopupOpen(true);
   };
 
   const handleEventCardClick = (event) => {
@@ -40,7 +35,7 @@ function App() {
 
   const closeAllPopups = () => {
     setCitiesPopupOpen(false);
-    setIsPopupOpen(false);
+    setIsAuthPopupOpen(false);
     setIsEventPopupOpen(false);
   };
 
@@ -87,20 +82,13 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="App">
-        <Header
-          onProfileIconClick={{
-            handlers: { handleOpenPopup, handleOpenCitiesPopup },
-          }}
-        />
+        <Header onProfileIconClick={handleProfileIconClick} />
         <Switch>
           <Route exact path="/">
             <MainPage />
           </Route>
           <Route path="/calendar">
             <CalendarPage onZoomEvent={handleEventCardClick} />
-          </Route>
-          <Route>
-            <AboutProjectPage path="/about-project" />
           </Route>
           <Route path="/profile">
             <Profile />
@@ -114,7 +102,7 @@ function App() {
           closePopup={closeAllPopups}
         />
         <AuthPopup
-          isPopupOpen={isPopupOpen}
+          isPopupOpen={isAuthPopupOpen}
           closePopup={closeAllPopups}
           onLogin={handleLogin}
         />
