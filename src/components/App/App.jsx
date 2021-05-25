@@ -12,11 +12,13 @@ import api from "../../utils/api/api";
 import CitiesPopup from "../CitiesPopup/CitiesPopup";
 import AuthPopup from "../Popup/AuthPopup";
 import EventPopup from "../Popup/EventPopup";
+import SubmitSignPopup from "../Popup/SubmitSignPopup";
 
 function App() {
   const [isCitiesPopupOpen, setCitiesPopupOpen] = useState(false);
   const [isAuthPopupOpen, setIsAuthPopupOpen] = useState(false);
   const [isEventPopupOpen, setIsEventPopupOpen] = useState(false);
+  const [isSignPopupOpen, setIsSignPopupOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [currentUser, setCurrentUser] = useState({
     name: "",
@@ -28,6 +30,10 @@ function App() {
     setIsAuthPopupOpen(true);
   };
 
+  const handleSubmitSign = () => {
+    setIsSignPopupOpen(true);
+  };
+
   const handleEventCardClick = (event) => {
     setSelectedEvent(event);
     setIsEventPopupOpen(true);
@@ -37,6 +43,7 @@ function App() {
     setCitiesPopupOpen(false);
     setIsAuthPopupOpen(false);
     setIsEventPopupOpen(false);
+    setIsSignPopupOpen(false);
   };
 
   const saveToLocalStorage = (name, value) => localStorage.setItem(name, value);
@@ -91,6 +98,7 @@ function App() {
             <CalendarPage
               onZoomEvent={handleEventCardClick}
               isEventPopupOpen={isEventPopupOpen}
+              onSign={handleSubmitSign}
             />
           </Route>
           <Route path="/profile">
@@ -113,6 +121,11 @@ function App() {
           event={selectedEvent}
           isPopupOpen={isEventPopupOpen}
           closePopup={closeAllPopups}
+        />
+        <SubmitSignPopup
+          isPopupOpen={isSignPopupOpen}
+          closePopup={closeAllPopups}
+          event={selectedEvent}
         />
         <Footer />
       </div>

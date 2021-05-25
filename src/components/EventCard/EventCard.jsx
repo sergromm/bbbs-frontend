@@ -4,7 +4,14 @@ import { ru } from "date-fns/locale";
 import PropTypes from "prop-types";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function EventCard({ isOnMain, onZoomEvent, event, children, btnStyle }) {
+function EventCard({
+  isOnMain,
+  onZoomEvent,
+  event,
+  children,
+  btnStyle,
+  onSign,
+}) {
   const { isLoggedIn } = React.useContext(CurrentUserContext);
   const dayWeek = format(parseISO(event.startAt), "EEEE", { locale: ru });
   const month = format(parseISO(event.startAt), "LLLL", {
@@ -49,6 +56,7 @@ function EventCard({ isOnMain, onZoomEvent, event, children, btnStyle }) {
       textBtn: "Записаться",
       textCounter:
         counter > 0 ? `Осталось ${counter} ${wordPlace()}` : "Запись закрыта",
+      func: onSign,
     };
   };
 
@@ -86,6 +94,7 @@ function EventCard({ isOnMain, onZoomEvent, event, children, btnStyle }) {
             type="button"
             aria-label={newData().textBtn}
             className={`event__button ${newData().styles}`}
+            onClick={newData().func}
           >
             {newData().textBtn}
           </button>
@@ -106,6 +115,7 @@ function EventCard({ isOnMain, onZoomEvent, event, children, btnStyle }) {
 EventCard.defaultProps = {
   isOnMain: false,
   onZoomEvent: null,
+  onSign: null,
   children: <></>,
   btnStyle: "",
   // дефолтное значание события, которое будет подставлено если нет ответа с сервера
@@ -127,6 +137,7 @@ EventCard.defaultProps = {
 EventCard.propTypes = {
   isOnMain: PropTypes.bool,
   onZoomEvent: PropTypes.func,
+  onSign: PropTypes.func,
   children: PropTypes.element,
   btnStyle: PropTypes.string,
   event: PropTypes.shape({
