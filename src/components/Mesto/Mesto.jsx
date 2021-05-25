@@ -1,4 +1,3 @@
-import React from "react"
 import whereToGoPaper from "../../images/where_to_go_paper.jpg";
 
 function Mesto() {
@@ -12,7 +11,7 @@ function Mesto() {
       <p className="paper__description-subtitle">усадьба Архангельское в две строки</p>
       <img src={whereToGoPaper} alt="Сплав на байдарках в две строки"
           className="paper__description-image"/>
-      <a href="#" className="paper__description-link">перейти на сайт</a>
+      <a href={whereToGoPaper} className="paper__description-link">перейти на сайт</a>
     </div>
       <div className="paper-text paper-text_size_max">
           <div className="paper-text__wrapper_size_max">
