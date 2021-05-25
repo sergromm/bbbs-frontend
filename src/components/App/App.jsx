@@ -6,7 +6,6 @@ import Footer from "../Footer/Footer";
 import MainPage from "../MainPage/MainPage";
 import CalendarPage from "../CalendarPage/CalendarPage";
 import AboutProjectPage from "../AboutProjectPage/AboutProjectPage";
-import ProfilePage from "../ProfilePage/ProfilePage";
 import SignContext from "../../contexts/SignContext";
 import Profile from "../Profile/Profile";
 import Mesto from "../Mesto/Mesto";
@@ -33,9 +32,6 @@ function App() {
           </Route>
           <Route>
             <AboutProjectPage path="/about-project" />
-          </Route>
-          <Route>
-            <ProfilePage path="/profile" />
           </Route>
         </Switch>
         <Footer />
