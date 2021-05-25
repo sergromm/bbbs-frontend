@@ -2,10 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import SignContext from "../../contexts/SignContext";
 
-function EventCard({ isOnMain }) {
+function EventCard({ isOnMain, event }) {
   const isLoggedIn = React.useContext(SignContext);
   const data = {
-    booked: true,
     counter: 102,
   };
 
@@ -26,7 +25,7 @@ function EventCard({ isOnMain }) {
   };
 
   const newData = () => {
-    if (isLoggedIn && data.booked)
+    if (isLoggedIn && event.booked)
       return {
         styles: "event__button_active event__button_type_cancel",
         textBtn: "Отменить",
@@ -45,6 +44,10 @@ function EventCard({ isOnMain }) {
     };
   };
 
+  // function handleZoom() {
+  //   onZoomEvent(event);
+  // }
+
   return (
     <article className={isOnMain ? "event event_place_index" : "event"}>
       <div className="event__info">
@@ -52,9 +55,7 @@ function EventCard({ isOnMain }) {
         <p className="event__month-and-weekday">декабрь / понедельник</p>
       </div>
       <div className="event__info">
-        <h3 className="event__title event__title_place_card">
-          Субботний meet up: учимся проходить интевью
-        </h3>
+        <h3 className="event__title event__title_place_card">event.title</h3>
         <p className="event__date">23</p>
       </div>
       <ul className="event__additional-info">
@@ -90,8 +91,18 @@ function EventCard({ isOnMain }) {
   );
 }
 
+EventCard.defaultProps = {
+  isOnMain: false,
+};
+
 EventCard.propTypes = {
-  isOnMain: PropTypes.bool.isRequired,
+  isOnMain: PropTypes.bool,
+  event: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    address: PropTypes.string.isRequired,
+    booked: PropTypes.bool.isRequired,
+  }).isRequired,
 };
 
 export default EventCard;
