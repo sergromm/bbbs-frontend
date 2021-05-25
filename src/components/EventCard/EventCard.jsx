@@ -1,15 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import SignContext from "../../contexts/SignContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function EventCard({ isOnMain }) {
-  const isLoggedIn = React.useContext(SignContext);
-  const data = {
-    booked: true,
-    counter: 102,
-  };
+function EventCard({ isOnMain, onZoomEvent, event }) {
+  const { isLoggedIn } = React.useContext(CurrentUserContext);
 
-  const wordPlace = (counter) => {
+  console.log(event.startAt);
+  const counter = event.seats - event.takenSeats;
+
+  const wordPlace = () => {
     const num = String(counter);
     switch (num.charAt(num.length - 1)) {
       case "1":
@@ -25,8 +24,27 @@ function EventCard({ isOnMain }) {
     }
   };
 
+  const data = () => {
+    const arr = event.startAt.split("-");
+    const mounthNumber = Number(arr[1]);
+    console.log(arr);
+    const mounthes = [
+      "январь",
+      "февраль",
+      "март",
+      "апрель",
+      "май",
+      "июнь",
+      "июль",
+    ];
+    return {
+      day: 1,
+      mounth: mounthes[mounthNumber + 1],
+    };
+  };
+
   const newData = () => {
-    if (isLoggedIn && data.booked)
+    if (isLoggedIn && event.booked)
       return {
         styles: "event__button_active event__button_type_cancel",
         textBtn: "Отменить",
@@ -34,27 +52,29 @@ function EventCard({ isOnMain }) {
       };
     return {
       styles:
-        data.counter > 0
+        counter > 0
           ? "event__button_active event__button_type_signup"
           : "event__button_disabled",
       textBtn: "Записаться",
       textCounter:
-        data.counter > 0
-          ? `Осталось ${data.counter} ${wordPlace(data.counter)}`
-          : "Запись закрыта",
+        counter > 0 ? `Осталось ${counter} ${wordPlace()}` : "Запись закрыта",
     };
   };
+
+  function handleZoom() {
+    onZoomEvent(event);
+  }
 
   return (
     <article className={isOnMain ? "event event_place_index" : "event"}>
       <div className="event__info">
         <p className="event__group">Волонтёры + дети</p>
-        <p className="event__month-and-weekday">декабрь / понедельник</p>
+        <p className="event__month-and-weekday">
+          {data().mounth} / понедельник
+        </p>
       </div>
       <div className="event__info">
-        <h3 className="event__title event__title_place_card">
-          Субботний meet up: учимся проходить интевью
-        </h3>
+        <h3 className="event__title event__title_place_card">{event.title}</h3>
         <p className="event__date">23</p>
       </div>
       <ul className="event__additional-info">
@@ -65,7 +85,7 @@ function EventCard({ isOnMain }) {
           Садовническая наб., д. 77 стр. 1 (офис компании Ernst&Young)
         </li>
         <li className="event__additional-info-item event__additional-info-item_type_contact-person">
-          Александра, +7 926 356-78-90
+          {event.contact}
         </li>
       </ul>
       <div className="event__controls">
@@ -84,14 +104,45 @@ function EventCard({ isOnMain }) {
           aria-label="Посмотреть детали"
           className="event__button event__button_active
               event__button_type_details"
+          onZoomEvent={handleZoom}
         />
       </div>
     </article>
   );
 }
 
+EventCard.defaultProps = {
+  isOnMain: false,
+  onZoomEvent: null,
+  // дефолтное значание события, которое будет подставлено если нет ответа с сервера
+  event: {
+    id: 1,
+    booked: false,
+    address: "",
+    contact: "",
+    title: "",
+    description: "",
+    startAt: "2021-05-10T06:00:00Z",
+    endAt: "2021-05-10T08:00:00Z",
+    seats: 100,
+    takenSeats: 0,
+    city: 1,
+  },
+};
+
 EventCard.propTypes = {
-  isOnMain: PropTypes.bool.isRequired,
+  isOnMain: PropTypes.bool,
+  onZoomEvent: PropTypes.func,
+  event: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    address: PropTypes.string.isRequired,
+    booked: PropTypes.bool.isRequired,
+    contact: PropTypes.string.isRequired,
+    seats: PropTypes.number.isRequired,
+    takenSeats: PropTypes.number.isRequired,
+    startAt: PropTypes.string.isRequired,
+  }),
 };
 
 export default EventCard;
