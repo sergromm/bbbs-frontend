@@ -1,6 +1,6 @@
 import addIco from "../../images/add-ico.svg";
 
-function Account() {
+function Profile() {
   return (
     <main className="account">
       <div className="profile profile_place_account">
@@ -118,4 +118,4 @@ function Account() {
   );
 }
 
-export default Account;
+export default Profile;

@@ -5,9 +5,8 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import MainPage from "../MainPage/MainPage";
 import CalendarPage from "../CalendarPage/CalendarPage";
-import AboutProjectPage from "../AboutProjectPage/AboutProjectPage";
 import SignContext from "../../contexts/SignContext";
-import Account from "../Account/Account";
+import Profile from "../Profile/Profile";
 import Mesto from "../Mesto/Mesto";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import Popup from "../Popup/Popup";
@@ -97,11 +96,8 @@ function App() {
             <Route path="/calendar">
               <CalendarPage />
             </Route>
-            <Route>
-              <AboutProjectPage path="/about-project" />
-            </Route>
             <Route path="/profile">
-              <Account />
+              <Profile />
             </Route>
             <Route path="/mesto">
               <Mesto />
