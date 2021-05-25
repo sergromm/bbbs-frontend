@@ -2,7 +2,6 @@
 @import url("../vendor/fonts/fonts.css");
 @import url("../blocks/page/page.css");
 @import url("./header.css");
-@import url("./calendar.css");
 @import url("./footer.css");
 /* стили для попапа с городами */
 @import url("../blocks/cities/cities.css");
