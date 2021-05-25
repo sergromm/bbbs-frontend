@@ -5,9 +5,9 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import MainPage from "../MainPage/MainPage";
 import CalendarPage from "../CalendarPage/CalendarPage";
-import SignContext from "../../contexts/SignContext";
 import Profile from "../Profile/Profile";
 import Mesto from "../Mesto/Mesto";
+import AboutProjectPage from "../AboutProjectPage/AboutProjectPage";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import api from "../../utils/api/api";
 import CitiesPopup from "../CitiesPopup/CitiesPopup";
@@ -15,14 +15,14 @@ import AuthPopup from "../Popups/AuthPopup";
 import EventPopup from "../Popups/EventPopup";
 
 function App() {
-  const [isLoggedIn, setLoggedIn] = React.useState(false);
-  const [isPopupOpen, setPopupOpen] = useState(false);
   const [isCitiesPopupOpen, setCitiesPopupOpen] = useState(false);
-
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isEventPopupOpen, setIsEventPopupOpen] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
   const [currentUser, setCurrentUser] = useState({
     name: "",
     city: "",
-    isLoggedIn,
+    isLoggedIn: false,
   });
 
   const handleOpenCitiesPopup = () => {
@@ -30,19 +30,24 @@ function App() {
   };
 
   const handleOpenPopup = () => {
-    setPopupOpen(true);
+    setIsPopupOpen(true);
+  };
+
+  const handleEventCardClick = (event) => {
+    setIsEventPopupOpen(true);
+    setSelectedEvent(event);
   };
 
   const closeAllPopups = () => {
-    setPopupOpen(false);
     setCitiesPopupOpen(false);
+    setIsPopupOpen(false);
+    setIsEventPopupOpen(false);
   };
 
   const saveToLocalStorage = (name, value) => localStorage.setItem(name, value);
 
   const handleLogin = ({ username, password }) => {
     api.authorize(username, password).then(({ refresh, access }) => {
-      setLoggedIn(true);
       saveToLocalStorage("refresh", refresh);
       saveToLocalStorage("access", access);
       setCurrentUser({
@@ -63,7 +68,6 @@ function App() {
             city: res.city,
             isLoggedIn: true,
           });
-          setLoggedIn(true);
         })
         .catch(new Error());
     } else {
@@ -82,40 +86,45 @@ function App() {
   // const history = useHistory();
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <SignContext.Provider value={isLoggedIn}>
-        <div className="App">
-          <Header
-            onProfileIconClick={{
-              handlers: { handleOpenPopup, handleOpenCitiesPopup },
-            }}
-          />
-          <Switch>
-            <Route exact path="/">
-              <MainPage />
-            </Route>
-            <Route path="/calendar">
-              <CalendarPage />
-            </Route>
-            <Route path="/profile">
-              <Profile />
-            </Route>
-            <Route path="/mesto">
-              <Mesto />
-            </Route>
-          </Switch>
-          <CitiesPopup
-            isPopupOpen={isCitiesPopupOpen}
-            closePopup={closeAllPopups}
-          />
-          <AuthPopup
-            isPopupOpen={isPopupOpen}
-            closePopup={closeAllPopups}
-            onLogin={handleLogin}
-          />
-          <EventPopup isPopupOpen={isPopupOpen} closePopup={closeAllPopups} />
-          <Footer />
-        </div>
-      </SignContext.Provider>
+      <div className="App">
+        <Header
+          onProfileIconClick={{
+            handlers: { handleOpenPopup, handleOpenCitiesPopup },
+          }}
+        />
+        <Switch>
+          <Route exact path="/">
+            <MainPage />
+          </Route>
+          <Route path="/calendar">
+            <CalendarPage onZoomEvent={handleEventCardClick} />
+          </Route>
+          <Route>
+            <AboutProjectPage path="/about-project" />
+          </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+          <Route path="/mesto">
+            <Mesto />
+          </Route>
+        </Switch>
+        <CitiesPopup
+          isPopupOpen={isCitiesPopupOpen}
+          closePopup={closeAllPopups}
+        />
+        <AuthPopup
+          isPopupOpen={isPopupOpen}
+          closePopup={closeAllPopups}
+          onLogin={handleLogin}
+        />
+        <EventPopup
+          event={selectedEvent}
+          isPopupOpen={isEventPopupOpen}
+          closePopup={closeAllPopups}
+        />
+        <Footer />
+      </div>
     </CurrentUserContext.Provider>
   );
 }
