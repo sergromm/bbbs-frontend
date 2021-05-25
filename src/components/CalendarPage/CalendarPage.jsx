@@ -6,6 +6,12 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 function CalendarPage() {
   const { city } = React.useContext(CurrentUserContext);
   const token = localStorage.getItem("access");
+  const [events, setEvents] = React.useState();
+  // получаем массив событий при загрузке странице
+  React.useEffect(() => {
+    api.getEvents(city, token).then(setEvents).catch(new Error());
+  }, []);
+
   return (
     <main className="calendar-page">
       <h2 className="title">Календарь</h2>
@@ -26,14 +32,9 @@ function CalendarPage() {
         </button>
       </div>
       <section className="calendar__events-grid">
-        {api
-          .getEvents(city, token)
-          .then((res) => {
-            res.map((eventItem) => (
-              <EventCard key={eventItem.id} event={eventItem} />
-            ));
-          })
-          .catch(new Error())}
+        {/* рендерим карточку, только если пришел ответ с массивом карточек */}
+        {events &&
+          events.map((event) => <EventCard key={event.id} event={event} />)}
       </section>
     </main>
   );
