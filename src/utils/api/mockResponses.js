@@ -20,7 +20,7 @@ const mockResponses = {
   profile: {
     id: 1,
     user: "Имя",
-    city: "Город",
+    city: 1,
   },
   editedProfile: {
     id: 1,

@@ -7,9 +7,21 @@
   margin-left: 0;
 }
 
+@media screen and (max-width: 1441px) {
+  .nav-list__item {
+    margin-left: 22px;
+  }
+  .nav-list__item:first-child {
+    margin-left: 22px;
+  }
+}
+
 @media screen and (max-width: 1370px) {
   .nav-list__item {
     margin-left: 0;
     margin-top: 15px;
+  }
+  .nav-list__item:first-child {
+    margin-left: 0;
   }
 }

@@ -1,49 +1,50 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useContext, useEffect, useState } from "react";
 import CoverStory from "./CoverStory";
 import DescribeArticle from "./DescribeArticle";
 import Description from "./Description";
 import Paper from "./Paper";
 import PosterList from "./PosterList";
 import QuestionList from "./QuestionList";
+import api from "../../utils/api/api";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+import EventCard from "../EventCard/EventCard";
 
 const Video = lazy(() => import("./Video"));
 const SocialIframe = lazy(() => import("./SocialIframe"));
 
 function MainPage() {
-  const articleData = {
-    first: {
-      text: `У таких детей возникает ощущение отверженности. Оно приводит к
-    напряженности и недоверию к людям и, как итог, к реальному неприятию
-    себя и окружающих.`,
-      color: "describe-article_color_green",
-    },
-    second: {
-      text: `Развитие детей-сирот отличается от развития детей, живущих в семьях. Все
-      этапы развития у детей-сирот проходят с искажениями и имеют ряд
-      негативных особенностей.`,
-      color: "describe-article_color_light-blue",
-    },
-  };
+  const currentUser = useContext(CurrentUserContext);
+  const [mainPageData, setMainPageData] = useState({});
+  const { articles, movies } = mainPageData;
+
+  useEffect(() => {
+    api.getMainPage(currentUser.city).then(setMainPageData);
+  }, []);
 
   return (
-    <main className="main-grid">
-      <Description />
+    <main
+      className={
+        currentUser.isLoggedIn ? "main-grid main-grid_authorized" : "main-grid"
+      }
+    >
+      {currentUser.isLoggedIn ? <EventCard isOnMain /> : <Description />}
       <CoverStory />
       <Paper />
-      <DescribeArticle
-        color={articleData.first.color}
-        text={articleData.first.text}
-      />
-      <PosterList />
+      {articles &&
+        articles.map((article, i) => (
+          <DescribeArticle
+            key={article.id}
+            color={article.color}
+            title={article.title}
+            arrayIndex={i}
+          />
+        ))}
+      <PosterList movies={movies} />
       <Suspense fallback={<div>Загрузка...</div>}>
         <SocialIframe />
         <Video />
       </Suspense>
       <QuestionList />
-      <DescribeArticle
-        color={articleData.second.color}
-        text={articleData.second.text}
-      />
     </main>
   );
 }

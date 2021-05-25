@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import SignContext from "../../contexts/SignContext";
 
-function EventCard() {
+function EventCard({ isOnMain }) {
   const isLoggedIn = React.useContext(SignContext);
   const data = {
     booked: true,
@@ -45,7 +46,7 @@ function EventCard() {
   };
 
   return (
-    <article className="event">
+    <article className={isOnMain ? "event event_place_index" : "event"}>
       <div className="event__info">
         <p className="event__group">Волонтёры + дети</p>
         <p className="event__month-and-weekday">декабрь / понедельник</p>
@@ -88,5 +89,9 @@ function EventCard() {
     </article>
   );
 }
+
+EventCard.propTypes = {
+  isOnMain: PropTypes.bool.isRequired,
+};
 
 export default EventCard;

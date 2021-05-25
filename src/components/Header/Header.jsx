@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import Logo from "./Logo/Logo";
 import Navigation from "./Navigation/Navigation";
 import ProfileIcon from "./ProfileIcon/ProfileIcon";
 import Search from "./Search/Search";
 
-function Header() {
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+function Header({ onProfileIconClick }) {
+  const [isSearchOpen, setSearchOpen] = useState(false);
+  const [isMenuOpen, setMenuOpen] = useState(false);
+  const [isProfileIconVisible, setProfileIconVisible] = useState(false);
   const [headerVisible, setHeaderVisible] = useState(true);
   const [resultsVisible, setResultsVisible] = useState(false);
   const handleSearchSubmit = (e) => {
@@ -16,21 +18,23 @@ function Header() {
 
   const handleSearchButtonClick = () => {
     if (isSearchOpen) {
-      setIsSearchOpen(false);
+      setSearchOpen(false);
       setResultsVisible(false);
     } else {
-      setIsSearchOpen(true);
-      setIsMenuOpen(false);
+      setSearchOpen(true);
+      setMenuOpen(false);
     }
   };
 
   const handleMenuButtonClick = () => {
     if (isMenuOpen) {
-      setIsMenuOpen(false);
+      setMenuOpen(false);
       setResultsVisible(false);
+      setProfileIconVisible(false);
     } else {
-      setIsMenuOpen(true);
-      setIsSearchOpen(false);
+      setMenuOpen(true);
+      setSearchOpen(false);
+      setProfileIconVisible(true);
     }
   };
 
@@ -43,12 +47,11 @@ function Header() {
       if (prevScrollpos > currentScrollPos) {
         setHeaderVisible(true);
         setResultsVisible(false);
-        setIsSearchOpen(false);
-        setIsMenuOpen(false);
+        setSearchOpen(false);
+        setMenuOpen(false);
       } else {
         setHeaderVisible(false);
       }
-
       prevScrollpos = currentScrollPos;
     };
 
@@ -83,10 +86,17 @@ function Header() {
           searchSubmit={handleSearchSubmit}
           resultsVisible={resultsVisible}
         />
-        <ProfileIcon />
+        <ProfileIcon
+          isVisible={isProfileIconVisible}
+          handleClick={onProfileIconClick}
+        />
       </div>
     </header>
   );
 }
+
+Header.propTypes = {
+  onProfileIconClick: PropTypes.func.isRequired,
+};
 
 export default Header;

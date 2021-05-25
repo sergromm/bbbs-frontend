@@ -1,5 +1,6 @@
 .nav-list__container {
-    margin: 0;
-    display: flex;
-    align-self: center;
+  max-height: 30px;
+  margin: 0;
+  display: flex;
+  align-self: center;
 }
