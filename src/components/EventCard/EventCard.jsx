@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import SignContext from "../../contexts/SignContext";
 
 function EventCard({ isOnMain, event }) {
+  console.log(event);
   const isLoggedIn = React.useContext(SignContext);
   const data = {
     counter: 102,
@@ -93,6 +94,20 @@ function EventCard({ isOnMain, event }) {
 
 EventCard.defaultProps = {
   isOnMain: false,
+  // дефолтное значание события, которое будет подставлено если нет ответа с сервера
+  event: {
+    id: 1,
+    booked: false,
+    address: "",
+    contact: "",
+    title: "",
+    description: "",
+    startAt: "2021-05-10T06:00:00Z",
+    endAt: "2021-05-10T08:00:00Z",
+    seats: 100,
+    takenSeats: 0,
+    city: 1,
+  },
 };
 
 EventCard.propTypes = {
@@ -102,7 +117,7 @@ EventCard.propTypes = {
     title: PropTypes.string.isRequired,
     address: PropTypes.string.isRequired,
     booked: PropTypes.bool.isRequired,
-  }).isRequired,
+  }),
 };
 
 export default EventCard;
