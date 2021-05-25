@@ -6,8 +6,9 @@ import Footer from "../Footer/Footer";
 import MainPage from "../MainPage/MainPage";
 import CalendarPage from "../CalendarPage/CalendarPage";
 import AboutProjectPage from "../AboutProjectPage/AboutProjectPage";
-import ProfilePage from "../ProfilePage/ProfilePage";
 import SignContext from "../../contexts/SignContext";
+import Profile from "../Profile/Profile";
+import Mesto from "../Mesto/Mesto";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import Popup from "../Popup/Popup";
 import AuthForm from "../AuthForm/AuthForm";
@@ -72,31 +73,29 @@ function App() {
   // const history = useHistory();
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
-      <SignContext.Provider value={isLoggedIn}>
-        <div className="App">
-          <Header onProfileIconClick={handleProfileIconClick} />
-          <Switch>
-            <Route exact path="/">
-              <MainPage />
-            </Route>
-            <Route path="/calendar">
-              <CalendarPage />
-            </Route>
-            <Route>
-              <AboutProjectPage path="/about-project" />
-            </Route>
-            <Route>
-              <ProfilePage path="/profile" />
-            </Route>
-          </Switch>
-          <Popup isPopupOpen={isPopupOpen} closePopup={closeAllPopups}>
-            <AuthForm onLogin={handleLogin} />
-          </Popup>
-          <Footer />
-        </div>
-      </SignContext.Provider>
-    </CurrentUserContext.Provider>
+    <SignContext.Provider value={isLoggedIn}>
+      <div className="App">
+        <Header />
+        <Switch>
+          <Route exact path="/">
+            <MainPage />
+          </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+          <Route path="/calendar">
+            <CalendarPage />
+          </Route>
+          <Route path="/mesto">
+            <Mesto />
+          </Route>
+          <Route>
+            <AboutProjectPage path="/about-project" />
+          </Route>
+        </Switch>
+        <Footer />
+      </div>
+    </SignContext.Provider>
   );
 }
 
