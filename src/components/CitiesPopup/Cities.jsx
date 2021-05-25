@@ -1,95 +1,29 @@
-import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
+import api from "../../utils/api/api";
+import City from "./City";
 
-function Cities({ cities }) {
-  const citiesArr = cities;
-  const primaryCities = citiesArr.filter((city) => city.isPrimary);
-
-  console.log(`
-  города ${cities}
-  остальные города ${citiesArr}
-  прайм города ${primaryCities.id}`);
-
+function Cities() {
+  const [cities, setCities] = useState([{ id: 0, city: "" }]);
+  useEffect(() => {
+    api.getCities().then(setCities).catch(new Error());
+  }, []);
   return (
     <div className="cities">
       <h2 className="cities__title">Выберите город</h2>
       <ul className="cities__list">
-        <li className="cities__item">
-          <a href="/" className="cities__link">
-            Москва
-          </a>
-        </li>
-        <li className="cities__item">
-          <a href="/" className="cities__link">
-            Санкт-Петербург
-          </a>
-        </li>
+        {cities &&
+          cities.map(
+            (city) => city.isPrimary && <City key={city.id} name={city.name} />
+          )}
       </ul>
       <ul className="cities__list">
-        <li className="cities__item">
-          <a href="/" className="cities__link">
-            Алексин
-          </a>
-        </li>
-        <li className="cities__item">
-          <a href="/" className="cities__link">
-            Барнаул
-          </a>
-        </li>
-        <li className="cities__item">
-          <a href="/" className="cities__link">
-            Екатеринбург
-          </a>
-        </li>
-        <li className="cities__item">
-          <a href="/" className="cities__link">
-            Зубцов
-          </a>
-        </li>
-        <li className="cities__item">
-          <a href="/" className="cities__link">
-            Калининград
-          </a>
-        </li>
-        <li className="cities__item">
-          <a href="/" className="cities__link">
-            Киреевск
-          </a>
-        </li>
-        <li className="cities__item">
-          <a href="/" className="cities__link">
-            Коломна
-          </a>
-        </li>
-        <li className="cities__item">
-          <a href="/" className="cities__link">
-            Новомосковск
-          </a>
-        </li>
-        <li className="cities__item">
-          <a href="/" className="cities__link">
-            Орехово-Зуево
-          </a>
-        </li>
-        <li className="cities__item">
-          <a href="/" className="cities__link">
-            Тверь
-          </a>
-        </li>
-        <li className="cities__item">
-          <a href="/" className="cities__link">
-            Тула
-          </a>
-        </li>
+        {cities &&
+          cities.map(
+            (city) => !city.isPrimary && <City key={city.id} name={city.name} />
+          )}
       </ul>
     </div>
   );
 }
-
-Cities.propTypes = {
-  cities: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    city: PropTypes.string.isRequired,
-  }).isRequired,
-};
 
 export default Cities;

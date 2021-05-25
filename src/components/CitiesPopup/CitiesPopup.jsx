@@ -2,22 +2,16 @@ import PropTypes from "prop-types";
 import Popup from "../Popup/Popup";
 import Cities from "./Cities";
 
-function CitiesPopup({ cities, isPopupOpen, closePopup }) {
+function CitiesPopup({ isPopupOpen, closePopup }) {
   return (
     <Popup isPopupOpen={isPopupOpen} closePopup={closePopup}>
-      <Cities cities={cities} />
+      <Cities />
     </Popup>
   );
 }
 
 CitiesPopup.propTypes = {
-  cities: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      city: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  isPopupOpen: PropTypes.func.isRequired,
+  isPopupOpen: PropTypes.bool.isRequired,
   closePopup: PropTypes.func.isRequired,
 };
 
