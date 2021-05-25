@@ -5,11 +5,11 @@ import EventCard from "../EventCard/EventCard";
 function EventPopup({ isPopupOpen, closePopup, event }) {
   return (
     <Popup isPopupOpen={isPopupOpen} closePopup={closePopup}>
-      <div className="calendar-modal__content">
+      {event && (
         <EventCard event={event}>
           <p className="calendar-modal__description">{event.description}</p>
         </EventCard>
-      </div>
+      )}
     </Popup>
   );
 }

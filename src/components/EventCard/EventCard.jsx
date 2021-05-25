@@ -79,8 +79,8 @@ function EventCard({ isOnMain, onZoomEvent, event, children }) {
           {event.contact}
         </li>
       </ul>
+      {children}
       <div className="event__controls">
-        {children}
         <div className="event__signup-container">
           <button
             type="button"

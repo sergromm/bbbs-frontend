@@ -29,8 +29,8 @@ function App() {
   };
 
   const handleEventCardClick = (event) => {
-    setIsEventPopupOpen(true);
     setSelectedEvent(event);
+    setIsEventPopupOpen(true);
   };
 
   const closeAllPopups = () => {
