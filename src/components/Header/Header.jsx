@@ -6,7 +6,6 @@ import ProfileIcon from "./ProfileIcon/ProfileIcon";
 import Search from "./Search/Search";
 
 function Header({ onProfileIconClick }) {
-  console.log(onProfileIconClick);
   const [isSearchOpen, setSearchOpen] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isProfileIconVisible, setProfileIconVisible] = useState(false);

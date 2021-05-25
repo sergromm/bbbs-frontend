@@ -5,7 +5,6 @@ import profileIcon from "../../../images/ico-profile.svg";
 import CurrentUserContext from "../../../contexts/CurrentUserContext";
 
 function ProfileIcon({ handleClick, isVisible }) {
-  console.log(handleClick);
   const { isLoggedIn } = useContext(CurrentUserContext);
   const iconStyles = () => {
     if (isLoggedIn) {
