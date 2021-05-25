@@ -7,7 +7,6 @@ import MainPage from "../MainPage/MainPage";
 import CalendarPage from "../CalendarPage/CalendarPage";
 import Profile from "../Profile/Profile";
 import Mesto from "../Mesto/Mesto";
-import AboutProjectPage from "../AboutProjectPage/AboutProjectPage";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import api from "../../utils/api/api";
 import CitiesPopup from "../CitiesPopup/CitiesPopup";
@@ -90,9 +89,6 @@ function App() {
           </Route>
           <Route path="/calendar">
             <CalendarPage onZoomEvent={handleEventCardClick} />
-          </Route>
-          <Route>
-            <AboutProjectPage path="/about-project" />
           </Route>
           <Route path="/profile">
             <Profile />
