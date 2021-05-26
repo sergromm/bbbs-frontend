@@ -2,12 +2,18 @@ import PropTypes from "prop-types";
 import Popup from "./Popup";
 import EventCard from "../EventCard/EventCard";
 
-function EventPopup({ isPopupOpen, closePopup, event }) {
+function EventPopup({ isPopupOpen, closePopup, event, onSign }) {
   return (
     <Popup isPopupOpen={isPopupOpen} closePopup={closePopup}>
-      <div className="calendar-modal__content">
-        {event && <EventCard event={event} />}
-      </div>
+      {event && (
+        <EventCard
+          event={event}
+          btnStyle="event__button_unvisible"
+          onSign={onSign}
+        >
+          <p className="calendar-modal__description">{event.description}</p>
+        </EventCard>
+      )}
     </Popup>
   );
 }
@@ -32,6 +38,7 @@ EventPopup.defaultProps = {
 EventPopup.propTypes = {
   isPopupOpen: PropTypes.bool.isRequired,
   closePopup: PropTypes.func.isRequired,
+  onSign: PropTypes.func.isRequired,
   event: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -41,6 +48,8 @@ EventPopup.propTypes = {
     seats: PropTypes.number.isRequired,
     takenSeats: PropTypes.number.isRequired,
     startAt: PropTypes.string.isRequired,
+    endAt: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
   }),
 };
 

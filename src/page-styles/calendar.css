@@ -31,6 +31,7 @@
 @import url("../blocks/event/__button/event__button.css");
 @import url("../blocks/event/__button/_active/event__button_active.css");
 @import url("../blocks/event/__button/_disabled/event__button_disabled.css");
+@import url("../blocks/event/__button/_unvisible/event__button_unvisible.css");
 @import url("../blocks/event/__button/_type/event__button_type_cancel.css");
 @import url("../blocks/event/__button/_type/event__button_type_details.css");
 @import url("../blocks/event/__button/_type/event__button_type_signup.css");
