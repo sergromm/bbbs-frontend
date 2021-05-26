@@ -20,8 +20,20 @@ function App() {
   const [isAuthPopupOpen, setIsAuthPopupOpen] = useState(false);
   const [isEventPopupOpen, setIsEventPopupOpen] = useState(false);
   const [isSignPopupOpen, setIsSignPopupOpen] = useState(false);
-  const [isSuccessPopupOpen, setIssuccessPopupOpen] = useState(false);
-  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [isSuccessPopupOpen, setIsSuccessPopupOpen] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState({
+    id: 1,
+    booked: false,
+    address: "",
+    contact: "",
+    title: "",
+    description: "",
+    startAt: "2021-05-10T06:00:00Z",
+    endAt: "2021-05-10T08:00:00Z",
+    seats: 100,
+    takenSeats: 0,
+    city: 1,
+  });
   const [currentUser, setCurrentUser] = useState({
     name: "",
     city: "",
@@ -33,7 +45,7 @@ function App() {
     setIsAuthPopupOpen(false);
     setIsEventPopupOpen(false);
     setIsSignPopupOpen(false);
-    setIssuccessPopupOpen(false);
+    setIsSuccessPopupOpen(false);
   };
 
   const handleOpenCItiesPopup = () => {
@@ -44,12 +56,22 @@ function App() {
     setIsAuthPopupOpen(true);
   };
 
+  /*  const handleSubmitSign = () => {
+    const token = localStorage.getItem("access");
+    api.bookEvent(selectedEvent.id, token).then((res) => {
+      selectedEvent.booked = res.booked;
+      closeAllPopups();
+      setIsSuccessPopupOpen(true);
+    });
+  }; */
+
   const handleSubmitSign = () => {
     closeAllPopups();
-    setIssuccessPopupOpen(true);
+    setIsSuccessPopupOpen(true);
   };
 
-  const handleSignEvent = () => {
+  const handleSignEvent = (event) => {
+    setSelectedEvent(event);
     setIsSignPopupOpen(true);
   };
 

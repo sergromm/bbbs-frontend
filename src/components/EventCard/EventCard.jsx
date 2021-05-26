@@ -56,6 +56,10 @@ function EventCard({
     };
   };
 
+  function handleSubmit() {
+    onSign(event);
+  }
+
   function handleZoom() {
     onZoomEvent(event);
   }
@@ -90,7 +94,7 @@ function EventCard({
             type="button"
             aria-label={newData().textBtn}
             className={`event__button ${newData().styles}`}
-            onClick={onSign}
+            onClick={handleSubmit}
           >
             {newData().textBtn}
           </button>
