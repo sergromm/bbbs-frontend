@@ -56,28 +56,33 @@ function App() {
     setIsAuthPopupOpen(true);
   };
 
-  /*  const handleSubmitSign = () => {
-    const token = localStorage.getItem("access");
-    api.bookEvent(selectedEvent.id, token).then((res) => {
-      selectedEvent.booked = res.booked;
-      closeAllPopups();
-      setIsSuccessPopupOpen(true);
-    });
-  }; */
-
   const handleSubmitSign = () => {
-    closeAllPopups();
-    setIsSuccessPopupOpen(true);
+    const token = localStorage.getItem("access");
+    api.bookEvent(selectedEvent.id, token).then(() => {
+      selectedEvent.booked = !selectedEvent.booked;
+      closeAllPopups();
+      if (selectedEvent.booked) {
+        setIsSuccessPopupOpen(true);
+      }
+    });
   };
+
+  useEffect(() => {});
 
   const handleSignEvent = (event) => {
     setSelectedEvent(event);
-    setIsSignPopupOpen(true);
+    if (!event.booked) {
+      setIsSignPopupOpen(true);
+    } else {
+      handleSubmitSign(event);
+    }
   };
 
   const handleEventCardClick = (event) => {
     setSelectedEvent(event);
+    // console.log(selectedEvent);
     setIsEventPopupOpen(true);
+    // console.log(isEventPopupOpen);
   };
 
   const saveToLocalStorage = (name, value) => localStorage.setItem(name, value);
@@ -132,9 +137,10 @@ function App() {
           </Route>
           <Route path="/calendar">
             <CalendarPage
-              onZoomEvent={handleEventCardClick}
               isEventPopupOpen={isEventPopupOpen}
+              onZoomEvent={handleEventCardClick}
               onSign={handleSignEvent}
+              setSelectedEvent={setSelectedEvent}
             />
           </Route>
           <Route path="/profile">
@@ -171,6 +177,7 @@ function App() {
         <SuccessSignPopup
           isPopupOpen={isSuccessPopupOpen}
           closePopup={closeAllPopups}
+          event={selectedEvent}
         />
         <Footer />
       </div>
