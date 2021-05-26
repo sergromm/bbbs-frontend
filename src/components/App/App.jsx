@@ -49,7 +49,8 @@ function App() {
     setIssuccessPopupOpen(true);
   };
 
-  const handleSignEvent = () => {
+  const handleSignEvent = (event) => {
+    setSelectedEvent(event);
     setIsSignPopupOpen(true);
   };
 
