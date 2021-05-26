@@ -1,11 +1,13 @@
 import PropTypes from "prop-types";
 import Popup from "./Popup";
+import success from "../../lotties/success.json";
+import Animation from "../Animation/Animation";
 
 function SuccessSignPopup({ isPopupOpen, closePopup }) {
   return (
     <Popup isPopupOpen={isPopupOpen} closePopup={closePopup}>
       <div className="сalendar-modal__content calendar-modal__content_place_after-confirmation">
-        <div className="calendar-modal__image" />
+        <Animation animationData={success} />
         <p className="event__title event__title_place_after-confirmation">
           Вы записаны на мероприятие
         </p>
