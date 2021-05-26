@@ -9,7 +9,7 @@ import Profile from "../Profile/Profile";
 import Mesto from "../Mesto/Mesto";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import api from "../../utils/api/api";
-import CitiesPopup from "../CitiesPopup/CitiesPopup";
+import CitiesPopup from "../Popup/CitiesPopup/CitiesPopup";
 import AuthPopup from "../Popup/AuthPopup";
 import EventPopup from "../Popup/EventPopup";
 import SubmitSignPopup from "../Popup/SubmitSignPopup";
@@ -31,6 +31,10 @@ function App() {
     setIsAuthPopupOpen(false);
     setIsEventPopupOpen(false);
     setIsSignPopupOpen(false);
+  };
+
+  const handleOpenCItiesPopup = () => {
+    setCitiesPopupOpen(true);
   };
 
   const handleProfileIconClick = () => {
@@ -60,6 +64,14 @@ function App() {
     });
   };
 
+  const removeFromLocalStorage = (name) => localStorage.removeItem(name);
+
+  function handleSignOut() {
+    setCurrentUser({ isLoggedIn: false });
+    removeFromLocalStorage("refresh");
+    removeFromLocalStorage("access");
+  }
+
   useEffect(() => {
     const token = localStorage.getItem("access");
     if (token) {
@@ -73,27 +85,21 @@ function App() {
           });
         })
         .catch(new Error());
-    } else {
+    } else if (currentUser.city === null) {
       setCitiesPopupOpen(true);
     }
   }, []);
 
-  // const removeFromLocalStorage = (name) => localStorage.removeItem(name);
-
-  // function handleSignOut() {
-  //   setIsLoggedIn(false);
-  //   removeFromLocalStorage("refresh");
-  //   removeFromLocalStorage("access");
-  // }
-
-  // const history = useHistory();
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="App">
         <Header onProfileIconClick={handleProfileIconClick} />
         <Switch>
           <Route exact path="/">
-            <MainPage />
+            <MainPage
+              onSign={handleSubmitSign}
+              onZoomEvent={handleEventCardClick}
+            />
           </Route>
           <Route path="/calendar">
             <CalendarPage
@@ -103,7 +109,10 @@ function App() {
             />
           </Route>
           <Route path="/profile">
-            <Profile />
+            <Profile
+              onSignOut={handleSignOut}
+              openPopup={handleOpenCItiesPopup}
+            />
           </Route>
           <Route path="/mesto">
             <Mesto />

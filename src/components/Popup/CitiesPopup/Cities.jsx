@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api from "../../utils/api/api";
+import api from "../../../utils/api/api";
 import City from "./City";
 
 function Cities() {

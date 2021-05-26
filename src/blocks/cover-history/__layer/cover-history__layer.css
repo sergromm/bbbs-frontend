@@ -5,12 +5,13 @@
   right: 0;
   left: 0;
   background: #4646469a;
+  text-decoration: none;
   opacity: 0.8;
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 0;
-  cursor: default;
+  transition: 0.3s;
 }
 
 .cover-history__layer:hover {
