@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import Popup from "./Popup";
 
-function SubmitSignPopup({ isPopupOpen, closePopup }) {
+function SubmitSignPopup({ isPopupOpen, closePopup, onSubmitSign }) {
   return (
     <Popup isPopupOpen={isPopupOpen} closePopup={closePopup}>
       <div className="сalendar-modal__content calendar-modal__content_place_confirmation">
@@ -20,6 +20,7 @@ function SubmitSignPopup({ isPopupOpen, closePopup }) {
             aria-label="Подтвердить запись"
             className="event__button event__button_active
             event__button_type_signup calendar-modal__button_type_confirm"
+            onClick={onSubmitSign}
           >
             Подтвердить запись
           </button>
@@ -40,6 +41,7 @@ function SubmitSignPopup({ isPopupOpen, closePopup }) {
 SubmitSignPopup.propTypes = {
   isPopupOpen: PropTypes.bool.isRequired,
   closePopup: PropTypes.func.isRequired,
+  onSubmitSign: PropTypes.func.isRequired,
 };
 
 export default SubmitSignPopup;

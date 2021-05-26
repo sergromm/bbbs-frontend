@@ -13,12 +13,14 @@ import CitiesPopup from "../Popup/CitiesPopup/CitiesPopup";
 import AuthPopup from "../Popup/AuthPopup";
 import EventPopup from "../Popup/EventPopup";
 import SubmitSignPopup from "../Popup/SubmitSignPopup";
+import SuccessSignPopup from "../Popup/SuccessSignPopup";
 
 function App() {
   const [isCitiesPopupOpen, setCitiesPopupOpen] = useState(false);
   const [isAuthPopupOpen, setIsAuthPopupOpen] = useState(false);
   const [isEventPopupOpen, setIsEventPopupOpen] = useState(false);
   const [isSignPopupOpen, setIsSignPopupOpen] = useState(false);
+  const [isSuccessPopupOpen, setIssuccessPopupOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [currentUser, setCurrentUser] = useState({
     name: "",
@@ -31,6 +33,7 @@ function App() {
     setIsAuthPopupOpen(false);
     setIsEventPopupOpen(false);
     setIsSignPopupOpen(false);
+    setIssuccessPopupOpen(false);
   };
 
   const handleOpenCItiesPopup = () => {
@@ -43,6 +46,10 @@ function App() {
 
   const handleSubmitSign = () => {
     closeAllPopups();
+    setIssuccessPopupOpen(true);
+  };
+
+  const handleSignEvent = () => {
     setIsSignPopupOpen(true);
   };
 
@@ -105,7 +112,7 @@ function App() {
             <CalendarPage
               onZoomEvent={handleEventCardClick}
               isEventPopupOpen={isEventPopupOpen}
-              onSign={handleSubmitSign}
+              onSign={handleSignEvent}
             />
           </Route>
           <Route path="/profile">
@@ -131,12 +138,17 @@ function App() {
           event={selectedEvent}
           isPopupOpen={isEventPopupOpen}
           closePopup={closeAllPopups}
-          onSign={handleSubmitSign}
+          onSubmitSign={handleSubmitSign}
         />
         <SubmitSignPopup
           isPopupOpen={isSignPopupOpen}
           closePopup={closeAllPopups}
           event={selectedEvent}
+          onSubmitSign={handleSubmitSign}
+        />
+        <SuccessSignPopup
+          isPopupOpen={isSuccessPopupOpen}
+          closePopup={closeAllPopups}
         />
         <Footer />
       </div>
