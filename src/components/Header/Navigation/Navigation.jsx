@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import NavigationItem from "./NavigationItem";
 
-function Navigation({ isSearchOpen, isMenuOpen }) {
+function Navigation({ isSearchOpen, isMenuOpen, onLinkClick }) {
   const [navClasses, setNavClasses] = useState("nav-list");
 
   const toggleNavClasses = () => {
@@ -46,7 +46,12 @@ function Navigation({ isSearchOpen, isMenuOpen }) {
   ];
 
   const renderNavItem = (item) => (
-    <NavigationItem key={item.key} name={item.name} link={item.name} />
+    <NavigationItem
+      key={item.key}
+      name={item.name}
+      link={item.name}
+      onLinkClick={onLinkClick}
+    />
   );
 
   useEffect(() => {
@@ -58,22 +63,38 @@ function Navigation({ isSearchOpen, isMenuOpen }) {
       <div className="nav-list__container">
         <ul className="nav-list__items nav-list__items_content_navigation">
           <li className="nav-list__item">
-            <Link to="/calendar" className="nav-list__link">
+            <Link
+              to="/calendar"
+              className="nav-list__link"
+              onClick={onLinkClick}
+            >
               календарь
             </Link>
           </li>
           <li className="nav-list__item">
-            <Link to="/where_to_go" className="nav-list__link">
+            <Link
+              to="/where_to_go"
+              className="nav-list__link"
+              onClick={onLinkClick}
+            >
               куда пойти
             </Link>
           </li>
           <li className="nav-list__item">
-            <Link to="/questions" className="nav-list__link">
+            <Link
+              to="/questions"
+              className="nav-list__link"
+              onClick={onLinkClick}
+            >
               вопросы
             </Link>
           </li>
           <li className="nav-list__item nav-list__item_submenu">
-            <Link to="/read_and_watch" className="nav-list__link">
+            <Link
+              to="/read_and_watch"
+              className="nav-list__link"
+              onClick={onLinkClick}
+            >
               читать и смотреть
             </Link>
             <ul className="nav-list__submenu-list">
@@ -81,12 +102,20 @@ function Navigation({ isSearchOpen, isMenuOpen }) {
             </ul>
           </li>
           <li className="nav-list__item">
-            <Link to="/child_rights" className="nav-list__link">
+            <Link
+              to="/child_rights"
+              className="nav-list__link"
+              onClick={onLinkClick}
+            >
               права детей
             </Link>
           </li>
           <li className="nav-list__item">
-            <Link to="/stories" className="nav-list__link">
+            <Link
+              to="/stories"
+              className="nav-list__link"
+              onClick={onLinkClick}
+            >
               истории
             </Link>
           </li>
@@ -102,6 +131,7 @@ function Navigation({ isSearchOpen, isMenuOpen }) {
 Navigation.propTypes = {
   isSearchOpen: PropTypes.bool.isRequired,
   isMenuOpen: PropTypes.bool.isRequired,
+  onLinkClick: PropTypes.func.isRequired,
 };
 
 export default Navigation;

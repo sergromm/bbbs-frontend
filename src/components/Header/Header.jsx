@@ -11,6 +11,7 @@ function Header({ onProfileIconClick }) {
   const [isProfileIconVisible, setProfileIconVisible] = useState(false);
   const [headerVisible, setHeaderVisible] = useState(true);
   const [resultsVisible, setResultsVisible] = useState(false);
+
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     setResultsVisible(true);
@@ -36,6 +37,10 @@ function Header({ onProfileIconClick }) {
       setSearchOpen(false);
       setProfileIconVisible(true);
     }
+  };
+
+  const closeMenuOnClick = () => {
+    setMenuOpen(false);
   };
 
   useEffect(() => {
@@ -71,8 +76,12 @@ function Header({ onProfileIconClick }) {
             : "header__btn-menu"
         }
       />
-      <Logo />
-      <Navigation isSearchOpen={isSearchOpen} isMenuOpen={isMenuOpen} />
+      <Logo onLinkClick={closeMenuOnClick} />
+      <Navigation
+        isSearchOpen={isSearchOpen}
+        isMenuOpen={isMenuOpen}
+        onLinkClick={closeMenuOnClick}
+      />
       <div
         className={
           isSearchOpen
@@ -88,7 +97,7 @@ function Header({ onProfileIconClick }) {
         />
         <ProfileIcon
           isVisible={isProfileIconVisible}
-          handleClick={onProfileIconClick}
+          handleClick={{ handlers: { onProfileIconClick, closeMenuOnClick } }}
         />
       </div>
     </header>

@@ -4,7 +4,12 @@ import PropTypes from "prop-types";
 import profileIcon from "../../../images/ico-profile.svg";
 import CurrentUserContext from "../../../contexts/CurrentUserContext";
 
-function ProfileIcon({ handleClick, isVisible }) {
+function ProfileIcon({
+  handleClick: {
+    handlers: { onProfileIconClick, closeMenuOnClick },
+  },
+  isVisible,
+}) {
   const { isLoggedIn } = useContext(CurrentUserContext);
   const iconStyles = () => {
     if (isLoggedIn) {
@@ -13,8 +18,14 @@ function ProfileIcon({ handleClick, isVisible }) {
     return "profile-ico profile-ico_state_not-authorized";
   };
 
+  const onIconClick = () => {
+    onProfileIconClick();
+    closeMenuOnClick();
+  };
+
   const iconLink = (
     <Link
+      onClick={closeMenuOnClick}
       to="/profile"
       src={profileIcon}
       className={`${iconStyles()} ${isVisible && "profile-ico_visible"}`}
@@ -25,7 +36,7 @@ function ProfileIcon({ handleClick, isVisible }) {
   const iconButton = (
     <button
       type="button"
-      onClick={handleClick}
+      onClick={onIconClick}
       src={profileIcon}
       className={`${iconStyles()} ${isVisible && "profile-ico_visible"}`}
       alt="Иконка юзера"
@@ -36,7 +47,12 @@ function ProfileIcon({ handleClick, isVisible }) {
 }
 
 ProfileIcon.propTypes = {
-  handleClick: PropTypes.func.isRequired,
+  handleClick: PropTypes.shape({
+    handlers: PropTypes.shape({
+      onProfileIconClick: PropTypes.func.isRequired,
+      closeMenuOnClick: PropTypes.func.isRequired,
+    }).isRequired,
+  }).isRequired,
   isVisible: PropTypes.bool.isRequired,
 };
 
