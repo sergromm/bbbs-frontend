@@ -169,7 +169,7 @@ const mockResponses = {
       id: 61,
       title: "Эфир с выпускником нашей программы",
       info: "Иван Рустаев, выпускник программы",
-      link: "https://youtu.be/H980rXfjdq4",
+      link: "https://www.youtube.com/embed/KA1wI3X5WSU",
       imageUrl: "https://picsum.photos/1199/675",
       duration: 134,
     },

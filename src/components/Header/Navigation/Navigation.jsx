@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import NavigationItem from "./NavigationItem";
 
 function Navigation({ isSearchOpen, isMenuOpen }) {
   const [navClasses, setNavClasses] = useState("nav-list");
@@ -14,6 +15,39 @@ function Navigation({ isSearchOpen, isMenuOpen }) {
       setNavClasses("nav-list");
     }
   };
+
+  // const navigationItems = [
+  //   { id: 1, name: "календарь", link: "/calendar" },
+  //   { id: 2, name: "куда пойти", link: "/where_to_go" },
+  //   { id: 3, name: "вопросы", link: "/questions" },
+  //   {
+  //     id: 4,
+  //     name: "читать и смотреть",
+  //     link: "/read_and_watch",
+  //     withSubNavigation: true,
+  //   },
+  //   { id: 5, name: "права детей", link: "/calendar" },
+  //   { id: 6, name: "истории", link: "/calendar" },
+  // ];
+
+  const subnavigationItems = [
+    { key: 1, name: "справочник", link: "/guide" },
+    { key: 2, name: "Видео", link: "/video" },
+    { key: 3, name: "Статьи", link: "/papers" },
+    { key: 4, name: "Фильмы", link: "/movies" },
+    { key: 5, name: "Книги", link: "/books" },
+  ];
+
+  const navigationLinkItems = [
+    { key: 1, name: "facebook", link: "facebook.com" },
+    { key: 2, name: "vkontakte", link: "vk.com" },
+    { key: 3, name: "instagram", link: "instagram.com" },
+    { key: 4, name: "youtube", link: "youtube.com" },
+  ];
+
+  const renderNavItem = (item) => (
+    <NavigationItem key={item.key} name={item.name} link={item.name} />
+  );
 
   useEffect(() => {
     toggleNavClasses();
@@ -43,31 +77,7 @@ function Navigation({ isSearchOpen, isMenuOpen }) {
               читать и смотреть
             </Link>
             <ul className="nav-list__submenu-list">
-              <li className="nav-list__submenu-item">
-                <a href="/guide" className="nav-list__link">
-                  cправочник
-                </a>
-              </li>
-              <li className="nav-list__submenu-item">
-                <a href="/video" className="nav-list__link">
-                  Видео
-                </a>
-              </li>
-              <li className="nav-list__submenu-item">
-                <a href="/papers" className="nav-list__link">
-                  Статьи
-                </a>
-              </li>
-              <li className="nav-list__submenu-item">
-                <a href="/movies" className="nav-list__link">
-                  Фильмы
-                </a>
-              </li>
-              <li className="nav-list__submenu-item">
-                <a href="/books" className="nav-list__link">
-                  Книги
-                </a>
-              </li>
+              {subnavigationItems.map(renderNavItem)}
             </ul>
           </li>
           <li className="nav-list__item">
@@ -82,26 +92,7 @@ function Navigation({ isSearchOpen, isMenuOpen }) {
           </li>
         </ul>
         <ul className="nav-list__items nav-list__items_content_social">
-          <li className="nav-list__item">
-            <a href="facebook.com" className="nav-list__link">
-              facebook
-            </a>
-          </li>
-          <li className="nav-list__item">
-            <a href="vk.com" className="nav-list__link">
-              vkontakte
-            </a>
-          </li>
-          <li className="nav-list__item">
-            <a href="instagram.com" className="nav-list__link">
-              instagram
-            </a>
-          </li>
-          <li className="nav-list__item">
-            <a href="youtube.com" className="nav-list__link">
-              youtube
-            </a>
-          </li>
+          {navigationLinkItems.map(renderNavItem)}
         </ul>
       </div>
     </nav>

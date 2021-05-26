@@ -96,7 +96,10 @@ function App() {
         <Header onProfileIconClick={handleProfileIconClick} />
         <Switch>
           <Route exact path="/">
-            <MainPage />
+            <MainPage
+              onSign={handleSubmitSign}
+              onZoomEvent={handleEventCardClick}
+            />
           </Route>
           <Route path="/calendar">
             <CalendarPage

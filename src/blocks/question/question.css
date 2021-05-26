@@ -1,4 +1,8 @@
 .question {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
   margin-bottom: 30px;
   height: 189px;
   padding: 50px;

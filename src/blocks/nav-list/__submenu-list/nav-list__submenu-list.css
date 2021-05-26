@@ -16,7 +16,7 @@
   z-index: 1;
   opacity: 0;
   visibility: hidden;
-  transition: 0.5s;
+  transition: 0.3s;
 }
 
 .nav-list__item_submenu:hover .nav-list__submenu-list {
