@@ -26,24 +26,25 @@ function App() {
     isLoggedIn: false,
   });
 
+  const closeAllPopups = () => {
+    setCitiesPopupOpen(false);
+    setIsAuthPopupOpen(false);
+    setIsEventPopupOpen(false);
+    setIsSignPopupOpen(false);
+  };
+
   const handleProfileIconClick = () => {
     setIsAuthPopupOpen(true);
   };
 
   const handleSubmitSign = () => {
+    closeAllPopups();
     setIsSignPopupOpen(true);
   };
 
   const handleEventCardClick = (event) => {
     setSelectedEvent(event);
     setIsEventPopupOpen(true);
-  };
-
-  const closeAllPopups = () => {
-    setCitiesPopupOpen(false);
-    setIsAuthPopupOpen(false);
-    setIsEventPopupOpen(false);
-    setIsSignPopupOpen(false);
   };
 
   const saveToLocalStorage = (name, value) => localStorage.setItem(name, value);
@@ -121,6 +122,7 @@ function App() {
           event={selectedEvent}
           isPopupOpen={isEventPopupOpen}
           closePopup={closeAllPopups}
+          onSign={handleSubmitSign}
         />
         <SubmitSignPopup
           isPopupOpen={isSignPopupOpen}

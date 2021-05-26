@@ -115,7 +115,6 @@ function EventCard({
 EventCard.defaultProps = {
   isOnMain: false,
   onZoomEvent: null,
-  onSign: null,
   children: <></>,
   btnStyle: "",
   // дефолтное значание события, которое будет подставлено если нет ответа с сервера
@@ -137,7 +136,7 @@ EventCard.defaultProps = {
 EventCard.propTypes = {
   isOnMain: PropTypes.bool,
   onZoomEvent: PropTypes.func,
-  onSign: PropTypes.func,
+  onSign: PropTypes.func.isRequired,
   children: PropTypes.element,
   btnStyle: PropTypes.string,
   event: PropTypes.shape({
