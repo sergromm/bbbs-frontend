@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import Popup from "../Popup/Popup";
+import Popup from "../Popup";
 import Cities from "./Cities";
 
 function CitiesPopup({ isPopupOpen, closePopup }) {

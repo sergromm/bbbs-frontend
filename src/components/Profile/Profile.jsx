@@ -1,18 +1,25 @@
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import addIco from "../../images/add-ico.svg";
 
-function Profile() {
+function Profile({ onSignOut, openPopup }) {
   return (
     <main className="account">
       <div className="profile profile_place_account">
-        <a
-          href="/"
+        <button
+          type="button"
+          onClick={openPopup}
           className="profile__city-edit profile__city-edit_place_account"
         >
           Изменить ваш город
-        </a>
-        <a href="/" className="profile__exit profile__exit_place_account">
+        </button>
+        <Link
+          onClick={onSignOut}
+          to="/"
+          className="profile__exit profile__exit_place_account"
+        >
           Выход
-        </a>
+        </Link>
       </div>
       <div className="coming-events">
         <p className="coming-events__title">У вас нет записи на мероприятия</p>
@@ -117,5 +124,10 @@ function Profile() {
     </main>
   );
 }
+
+Profile.propTypes = {
+  onSignOut: PropTypes.func.isRequired,
+  openPopup: PropTypes.func.isRequired,
+};
 
 export default Profile;
