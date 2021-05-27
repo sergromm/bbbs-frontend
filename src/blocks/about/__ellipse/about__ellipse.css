@@ -1,0 +1,26 @@
+.about__ellipse {
+  margin: 0;
+  width: 570px;
+  min-height: 570px;
+  background-color: #F8D162;
+  border-radius: 570px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (min-width: 769px) and (max-width: 1439px) {
+  .about__ellipse {
+    width: 370px;
+    min-height: 358px;
+    border-radius: 370px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .about__ellipse {
+    width: 290px;
+    min-height: 280px;
+    border-radius: 290px;
+  }
+}

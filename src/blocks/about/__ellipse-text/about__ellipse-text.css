@@ -1,0 +1,15 @@
+.about__ellipse-text {
+  margin: 0;
+  max-width: 500px;
+  font-family: 'Proto Grotesk Light Web';
+  font-weight: 300;
+  font-size: 23px;
+  line-height: 30px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 1024px) {
+  .about__ellipse-text {
+    font-size: 19px;
+    line-height: 23px;
+  }
+}

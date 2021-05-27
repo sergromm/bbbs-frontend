@@ -1,0 +1,21 @@
+.about__logo {
+  width: 357px;
+  height: 65px;
+  margin-bottom: 80px;
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .about__logo {
+    width: 252px;
+    height: 46px;
+    margin-bottom: 50px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .about__logo {
+    width: 252px;
+    height: 46px;
+    margin-bottom: 30px;
+  }
+}

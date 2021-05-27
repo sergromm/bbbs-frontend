@@ -1,0 +1,11 @@
+.about__block-container {
+  margin: 0;
+  background-color: #fff;
+  min-height: 265px;
+  border-radius: 30px;
+  padding: 30px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
