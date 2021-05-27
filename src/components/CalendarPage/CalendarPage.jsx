@@ -7,7 +7,7 @@ import api from "../../utils/api/api";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import Filter from "../Filter/Filter";
 
-function CalendarPage({ onZoomEvent, onSign }) {
+function CalendarPage({ onZoomEvent, onSign, setSelectedEvent }) {
   const { city } = React.useContext(CurrentUserContext);
   const token = localStorage.getItem("access");
   const [events, setEvents] = React.useState([]);
@@ -74,6 +74,7 @@ function CalendarPage({ onZoomEvent, onSign }) {
             event={event}
             onZoomEvent={onZoomEvent}
             onSign={onSign}
+            setSelectedEvent={setSelectedEvent}
           />
         ))}
       </section>
@@ -84,6 +85,7 @@ function CalendarPage({ onZoomEvent, onSign }) {
 CalendarPage.propTypes = {
   onZoomEvent: PropTypes.func.isRequired,
   onSign: PropTypes.func.isRequired,
+  setSelectedEvent: PropTypes.func.isRequired,
 };
 
 export default CalendarPage;

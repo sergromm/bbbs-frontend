@@ -40,6 +40,7 @@ function SubmitSignPopup({ isPopupOpen, closePopup, onSubmitSign, event }) {
               aria-label="Отменить запись"
               className="event__button calendar-modal__button_active
               calendar-modal__button_type_cancel"
+              onClick={closePopup}
             >
               Отменить
             </button>
