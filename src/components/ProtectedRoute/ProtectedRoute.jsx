@@ -7,11 +7,11 @@ function ProtectedRoute({
   component: Component,
   onSign,
   onZoomEvent,
-  onAutoAuth,
+  openAuthPopup,
 }) {
   const { isLoggedIn } = React.useContext(CurrentUserContext);
   function protect() {
-    onAutoAuth();
+    openAuthPopup();
     return <Redirect to="/" />;
   }
 
@@ -30,7 +30,7 @@ ProtectedRoute.propTypes = {
   component: PropTypes.element.isRequired,
   onSign: PropTypes.func.isRequired,
   onZoomEvent: PropTypes.func.isRequired,
-  onAutoAuth: PropTypes.func.isRequired,
+  openAuthPopup: PropTypes.func.isRequired,
 };
 
 export default ProtectedRoute;

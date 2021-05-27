@@ -145,7 +145,7 @@ function App() {
               component={CalendarPage}
               onZoomEvent={handleEventCardClick}
               onSign={handleSignEvent}
-              onAutoAuth={openAuthPopup}
+              openAuthPopup={openAuthPopup}
             />
           </Route>
           <Route path="/profile">
