@@ -13,6 +13,7 @@
 @import url("../blocks/popup/popup.css");
 @import url("../blocks/popup/__container/popup__container.css");
 @import url("../blocks/popup/__close/popup__close.css");
+@import url("../blocks/popup/__error-container/popup__error-container.css");
 
 @import url("../blocks/form/form.css");
 @import url("../blocks/form/_content/form_content_authorization.css");
@@ -38,7 +39,6 @@
 @import url("../blocks/describe-article/_position/describe-article_position_first.css");
 @import url("../blocks/describe-article/__link/describe-article__link.css");
 @import url("../blocks/describe-article/__title/describe-article__title.css");
-@import url("../blocks//paper/paper.css");
 @import url("../blocks/poster/poster.css");
 @import url("../blocks/poster/__item/poster__item.css");
 @import url("../blocks/poster/__item/_screen/poster__item_screen_mobile.css");
