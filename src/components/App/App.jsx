@@ -19,13 +19,12 @@ import AboutProjectPage from "../AboutProjectPage/AboutProjectPage";
 import ErrorSignPopup from "../Popup/ErrorSignPopup";
 
 function App() {
-  const err = "popup__error-container";
   const [isCitiesPopupOpen, setCitiesPopupOpen] = useState(false);
   const [isAuthPopupOpen, setIsAuthPopupOpen] = useState(false);
   const [isEventPopupOpen, setIsEventPopupOpen] = useState(false);
   const [isSignPopupOpen, setIsSignPopupOpen] = useState(false);
   const [isSuccessPopupOpen, setIsSuccessPopupOpen] = useState(false);
-  const [isErrorPopupOpen, setIsErrorPopupOpen] = useState(false);
+  const [isErrorPopupOpen, setIsErrorPopupOpen] = useState(true);
   const [selectedEvent, setSelectedEvent] = useState({
     id: 1,
     booked: false,
@@ -196,7 +195,7 @@ function App() {
         <ErrorSignPopup
           isPopupOpen={isErrorPopupOpen}
           closePopup={closeAllPopups}
-          styleCon={err}
+          styleCon="popup__error-container"
         />
         <Footer />
       </div>

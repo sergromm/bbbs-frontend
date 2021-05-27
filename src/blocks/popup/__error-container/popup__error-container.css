@@ -5,6 +5,11 @@
   background-color: #F2E5E5;
   box-sizing: border-box;
   padding: 59px 30px 30px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .popup__error-title{
