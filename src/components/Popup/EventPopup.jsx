@@ -5,15 +5,13 @@ import EventCard from "../EventCard/EventCard";
 function EventPopup({ isPopupOpen, closePopup, event, onSubmitSign }) {
   return (
     <Popup isPopupOpen={isPopupOpen} closePopup={closePopup}>
-      {event && (
-        <EventCard
-          event={event}
-          btnStyle="event__button_unvisible"
-          onSign={onSubmitSign}
-        >
-          <p className="calendar-modal__description">{event.description}</p>
-        </EventCard>
-      )}
+      <EventCard
+        event={event}
+        btnStyle="event__button_unvisible"
+        onSign={onSubmitSign}
+      >
+        <p className="calendar-modal__description">{event.description}</p>
+      </EventCard>
     </Popup>
   );
 }
