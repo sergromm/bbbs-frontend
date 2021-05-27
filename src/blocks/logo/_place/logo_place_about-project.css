@@ -1,18 +1,23 @@
 .logo_place_about-project {
   margin: 50px auto 80px;
-  background: url('../../../images/logo_place_about-project.svg') no-repeat;
+  background: url("../../../images/logo_place_about-project.svg") no-repeat;
   background-size: contain;
   width: 357px;
   height: 65px;
+  transition: 0.3s;
 }
-  
+
+.logo_place_about-project:hover {
+  opacity: 0.8;
+}
+
 @media screen and (max-width: 1439px) {
   .logo_place_about-project {
     width: 252px;
     height: 46px;
   }
 }
-  
+
 @media screen and (max-width: 423px) {
   .logo_place_about-project {
     margin: 30px auto 30px;

@@ -7,7 +7,7 @@ function Footer() {
       <img className="footer__logo" src={logoWhite} alt="логотип BBBS" />
       <ul className="footer__list footer__list_content_navigation">
         <li className="footer__list-item">
-          <Link className="footer__link" to="/">
+          <Link className="footer__link" to="/about-project">
             о проекте
           </Link>
         </li>
@@ -64,12 +64,17 @@ function Footer() {
           </a>
         </li>
       </ul>
-      <button type="button" className="donate-btn">
+      <a
+        href="https://www.nastavniki.org/campaign/pomoch-dengami/"
+        target="_blank"
+        rel="noreferrer"
+        type="button"
+        className="donate-btn"
+      >
         Помочь деньгами
-      </button>
+      </a>
       <div className="footer__owners">
         <p className="footer__copyright">
-          {" "}
           &copy; Старшие Братья Старшие Сестры
         </p>
         <div className="footer__authors">

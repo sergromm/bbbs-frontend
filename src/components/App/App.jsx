@@ -15,6 +15,7 @@ import EventPopup from "../Popup/EventPopup";
 import SubmitSignPopup from "../Popup/SubmitSignPopup";
 import SuccessSignPopup from "../Popup/SuccessSignPopup";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import AboutProjectPage from "../AboutProjectPage/AboutProjectPage";
 
 function App() {
   const [isCitiesPopupOpen, setCitiesPopupOpen] = useState(false);
@@ -153,6 +154,9 @@ function App() {
               onSignOut={handleSignOut}
               openPopup={handleOpenCItiesPopup}
             />
+          </Route>
+          <Route path="/about-project">
+            <AboutProjectPage />
           </Route>
           <Route path="/mesto">
             <Mesto />
