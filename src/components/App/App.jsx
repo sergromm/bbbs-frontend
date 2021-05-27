@@ -16,13 +16,16 @@ import SubmitSignPopup from "../Popup/SubmitSignPopup";
 import SuccessSignPopup from "../Popup/SuccessSignPopup";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import AboutProjectPage from "../AboutProjectPage/AboutProjectPage";
+import ErrorSignPopup from "../Popup/ErrorSignPopup";
 
 function App() {
+  const err = "popup__error-container";
   const [isCitiesPopupOpen, setCitiesPopupOpen] = useState(false);
   const [isAuthPopupOpen, setIsAuthPopupOpen] = useState(false);
   const [isEventPopupOpen, setIsEventPopupOpen] = useState(false);
   const [isSignPopupOpen, setIsSignPopupOpen] = useState(false);
   const [isSuccessPopupOpen, setIsSuccessPopupOpen] = useState(false);
+  const [isErrorPopupOpen, setIsErrorPopupOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState({
     id: 1,
     booked: false,
@@ -48,6 +51,7 @@ function App() {
     setIsEventPopupOpen(false);
     setIsSignPopupOpen(false);
     setIsSuccessPopupOpen(false);
+    setIsErrorPopupOpen(false);
   };
 
   const openAuthPopup = () => {
@@ -64,13 +68,16 @@ function App() {
 
   const handleSubmitSign = () => {
     const token = localStorage.getItem("access");
-    api.bookEvent(selectedEvent.id, token).then(() => {
-      selectedEvent.booked = !selectedEvent.booked;
-      closeAllPopups();
-      if (selectedEvent.booked) {
-        setIsSuccessPopupOpen(true);
-      }
-    });
+    api
+      .bookEvent(selectedEvent.id, token)
+      .then(() => {
+        selectedEvent.booked = !selectedEvent.booked;
+        closeAllPopups();
+        if (selectedEvent.booked) {
+          setIsSuccessPopupOpen(true);
+        }
+      })
+      .catch(() => setIsErrorPopupOpen(true));
   };
 
   useEffect(() => {});
@@ -86,9 +93,7 @@ function App() {
 
   const handleEventCardClick = (event) => {
     setSelectedEvent(event);
-    // console.log(selectedEvent);
     setIsEventPopupOpen(true);
-    // console.log(isEventPopupOpen);
   };
 
   const saveToLocalStorage = (name, value) => localStorage.setItem(name, value);
@@ -187,6 +192,11 @@ function App() {
           isPopupOpen={isSuccessPopupOpen}
           closePopup={closeAllPopups}
           event={selectedEvent}
+        />
+        <ErrorSignPopup
+          isPopupOpen={isErrorPopupOpen}
+          closePopup={closeAllPopups}
+          styleCon={err}
         />
         <Footer />
       </div>

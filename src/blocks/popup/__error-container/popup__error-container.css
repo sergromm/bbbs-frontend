@@ -1,0 +1,17 @@
+.popup__error-container{
+  height: 414px;
+  max-width: 570px;
+  width: 100%;
+  background-color: #F2E5E5;
+  box-sizing: border-box;
+  padding: 59px 30px 30px;
+}
+
+.popup__error-title{
+  color: #FF4E4E;
+  width: 320px;
+  font-weight: 300;
+  font-size: 23px;
+  line-height: 30px;
+  margin: 0;
+}
