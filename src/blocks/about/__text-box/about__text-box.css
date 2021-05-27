@@ -1,0 +1,21 @@
+.about__text-box {
+  margin: 0;
+  max-width: 600px;
+  background: #FFFFFF;
+  border-radius: 30px;
+  padding: 52px 30px 52px 30px;
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .about__text-box {
+    max-width: 570px;
+    padding: 30px 15px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .about__text-box {
+    max-width: 290px;
+    padding: 30px 15px;
+  }
+}

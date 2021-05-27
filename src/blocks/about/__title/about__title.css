@@ -1,0 +1,35 @@
+.about__title {
+  margin: 0;
+  max-width: 1170px;
+  font-family: 'Proto Grotesk Light Web';
+  font-weight: 300;
+  font-size: 44px;
+  line-height: 50px;
+  text-align: center;
+  color: #000000;
+  padding-bottom: 50px;
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+  .about__title {
+    max-width: 1030px;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .about__title {
+    max-width: 770px;
+    font-size: 19px;
+    line-height: 23px;
+    padding-bottom: 30px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .about__title {
+    max-width: 290px;
+    font-size: 19px;
+    line-height: 23px;
+    padding-bottom: 20px;
+  }
+}

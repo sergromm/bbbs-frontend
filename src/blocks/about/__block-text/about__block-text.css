@@ -1,0 +1,14 @@
+.about__block-text {
+  margin: 0;
+  font-family: 'PT Root UI';
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 26px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 1024px) {
+  .about__block-text {
+    font-size: 15px;
+    line-height: 21px;
+  }
+}

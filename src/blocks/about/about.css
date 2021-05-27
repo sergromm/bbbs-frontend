@@ -1,0 +1,30 @@
+.about {
+  margin: 0 auto;
+  padding: 80px 75px 0 75px;
+  min-width: 320px;
+  max-width: 1920px;
+  background-color: #F3F2F2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+  .about {
+    padding-left: 135px;
+    padding-right: 135px;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .about {
+    padding: 30px 127px 0 127px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .about {
+    padding: 10px 15px 0 15px;
+  }
+}
+
