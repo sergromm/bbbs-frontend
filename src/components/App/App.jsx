@@ -14,6 +14,7 @@ import AuthPopup from "../Popup/AuthPopup";
 import EventPopup from "../Popup/EventPopup";
 import SubmitSignPopup from "../Popup/SubmitSignPopup";
 import SuccessSignPopup from "../Popup/SuccessSignPopup";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
   const [isCitiesPopupOpen, setCitiesPopupOpen] = useState(false);
@@ -136,11 +137,10 @@ function App() {
             />
           </Route>
           <Route path="/calendar">
-            <CalendarPage
-              isEventPopupOpen={isEventPopupOpen}
+            <ProtectedRoute
+              component={CalendarPage}
               onZoomEvent={handleEventCardClick}
               onSign={handleSignEvent}
-              setSelectedEvent={setSelectedEvent}
             />
           </Route>
           <Route path="/profile">
