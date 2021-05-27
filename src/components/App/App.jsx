@@ -24,7 +24,7 @@ function App() {
   const [isEventPopupOpen, setIsEventPopupOpen] = useState(false);
   const [isSignPopupOpen, setIsSignPopupOpen] = useState(false);
   const [isSuccessPopupOpen, setIsSuccessPopupOpen] = useState(false);
-  const [isErrorPopupOpen, setIsErrorPopupOpen] = useState(true);
+  const [isErrorPopupOpen, setIsErrorPopupOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState({
     id: 1,
     booked: false,
