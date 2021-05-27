@@ -2,13 +2,12 @@ import PropTypes from "prop-types";
 
 function Popup({ isPopupOpen, closePopup, children, styleCon }) {
   const popupStyle = (isOpen) => (isOpen ? "popup popup_opened" : "popup");
-  git;
   return (
     <div
       className={`${popupStyle(isPopupOpen)}
        popup_content_authorization-form`}
     >
-      <div className={`popup__container ${styleCon}`}>
+      <div className={styleCon !== "" ? styleCon : `popup__container`}>
         {children}
         <button
           onClick={closePopup}

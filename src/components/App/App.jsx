@@ -19,7 +19,6 @@ import AboutProjectPage from "../AboutProjectPage/AboutProjectPage";
 import ErrorSignPopup from "../Popup/ErrorSignPopup";
 
 function App() {
-  const err = "popup__error-container";
   const [isCitiesPopupOpen, setCitiesPopupOpen] = useState(false);
   const [isAuthPopupOpen, setIsAuthPopupOpen] = useState(false);
   const [isEventPopupOpen, setIsEventPopupOpen] = useState(false);
@@ -196,7 +195,7 @@ function App() {
         <ErrorSignPopup
           isPopupOpen={isErrorPopupOpen}
           closePopup={closeAllPopups}
-          styleCon={err}
+          styleCon="popup__error-container"
         />
         <Footer />
       </div>
