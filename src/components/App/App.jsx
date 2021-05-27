@@ -49,6 +49,10 @@ function App() {
     setIsSuccessPopupOpen(false);
   };
 
+  const openAuthPopup = () => {
+    setIsAuthPopupOpen(true);
+  };
+
   const handleOpenCItiesPopup = () => {
     setCitiesPopupOpen(true);
   };
@@ -141,6 +145,7 @@ function App() {
               component={CalendarPage}
               onZoomEvent={handleEventCardClick}
               onSign={handleSignEvent}
+              openAuthPopup={openAuthPopup}
             />
           </Route>
           <Route path="/profile">
