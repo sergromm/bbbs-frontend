@@ -10,6 +10,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+  position: relative;
 }
 
 .popup__error-title{
@@ -19,4 +20,10 @@
   font-size: 23px;
   line-height: 30px;
   margin: 0;
+}
+
+.popup__error-btn{
+  background-color: transparent;
+  border-color: #000;
+
 }

@@ -14,8 +14,7 @@ function ErrorSignPopup({ isPopupOpen, closePopup, styleCon }) {
       <button
         type="button"
         aria-label="Вернуться к календарю"
-        className="event__button calendar-modal__button_active
-            calendar-modal__button_type_return-to-calendar"
+        className="event__button popup__error-btn"
         onClick={closePopup}
       >
         Вернуться к мероприятию
