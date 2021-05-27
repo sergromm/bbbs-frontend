@@ -22,27 +22,28 @@ function CalendarPage({ onZoomEvent, onSign }) {
     return { number, name };
   };
 
+  const matchMonthes = (event, month) =>
+    format(parseISO(event.startAt), "LLLL", { locale: ru }) === month;
+
   // получаем массив месяцев в которых будут евенты
   const getMonthes = (eventList) => {
     const arr = eventList.map(getMonth);
+    const firstMonth = arr[0].name;
+    setCurrentActiveButton(firstMonth);
+    const firstEvent = eventList.filter((event) =>
+      matchMonthes(event, firstMonth)
+    );
+    setFilteredEvents(firstEvent);
     return arr;
   };
 
   // При клике на кнопку фильтра фильтруем список месяцев по названию кнопки
-  const handleFilterByMonth = (evt, monthName) => {
-    const month = evt.target.innerText.toLowerCase();
-    if (monthName !== currentActiveButton) {
-      const arrayOfFilteredEvents = events.filter(
-        (event) =>
-          month === format(parseISO(event.startAt), "LLLL", { locale: ru })
-      );
-      setCurrentActiveButton(monthName);
-      setFilteredEvents(arrayOfFilteredEvents);
-    } else {
-      // если нажали на активную кнопку сбрасываем фильтр
-      setCurrentActiveButton("");
-      setFilteredEvents(events);
-    }
+  const handleFilterByMonth = (evt, name) => {
+    const arrayOfFilteredEvents = events.filter((event) =>
+      matchMonthes(event, name)
+    );
+    setCurrentActiveButton(name);
+    setFilteredEvents(arrayOfFilteredEvents);
   };
 
   // получаем массив событий при загрузке странице
@@ -51,7 +52,6 @@ function CalendarPage({ onZoomEvent, onSign }) {
       .getEvents(city, token)
       .then((data) => {
         setEvents(data);
-        setFilteredEvents(data);
         setMonthes(getMonthes(data));
       })
       .catch(new Error());

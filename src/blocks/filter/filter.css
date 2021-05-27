@@ -1,22 +1,28 @@
 .filter {
-    font-family: 'ProtoGrotesk', Georgia, Serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: nowrap;
-    margin-bottom: 15px;
-    overflow-x: scroll;
-    overflow-y: hidden;
+  font-family: "ProtoGrotesk", Georgia, Serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin-bottom: 15px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.filter::-webkit-scrollbar {
+  display: none;
 }
 
 @media screen and (max-width: 1300px) {
-    .filter {
-        margin-bottom: 10px;
-    }
+  .filter {
+    margin-bottom: 10px;
+  }
 }
 
 @media screen and (max-width: 600px) {
-    .filter {
-        justify-content: flex-start;
-    }
+  .filter {
+    justify-content: flex-start;
+  }
 }
