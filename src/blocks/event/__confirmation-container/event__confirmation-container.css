@@ -1,0 +1,6 @@
+.event__confirmation-container {
+    margin: 30px auto 0;
+    display: flex;
+    justify-content: center;
+    max-width: 320px;
+  }

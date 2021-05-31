@@ -1,0 +1,19 @@
+
+.calendar-modal__button_type_close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: url('../../../../images/close.svg') no-repeat;
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  @media screen and (max-width: 768px) {
+      .calendar-modal__button_type_close {
+        top: 15px;
+        right: 15px;
+      }
+    }

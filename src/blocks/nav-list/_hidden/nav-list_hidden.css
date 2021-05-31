@@ -1,0 +1,5 @@
+.nav-list_hidden {
+  opacity: 0;
+  visibility: hidden;
+  width: 0;
+}

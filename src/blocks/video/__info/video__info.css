@@ -1,0 +1,18 @@
+.video__info {
+    margin: 0;
+    padding: 30px 50px;
+    width: 32%;
+    background-color: #F8D162;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+    box-sizing: border-box;
+}
+@media screen and (max-width: 1260px) {
+    .video__info {
+        width: 100%;
+        border-radius: 0 0 30px 30px;
+    }
+}

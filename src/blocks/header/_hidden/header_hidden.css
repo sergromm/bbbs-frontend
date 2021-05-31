@@ -1,0 +1,5 @@
+.header_hidden {
+  top: -120px;
+  opacity: 0;
+  visibility: hidden;
+}

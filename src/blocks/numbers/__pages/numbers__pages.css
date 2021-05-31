@@ -1,0 +1,10 @@
+.numbers__pages {
+   margin-left: 10px;
+   position: relative;
+}
+
+@media (max-width: 1250px) {
+   .numbers__pages {
+      margin-left: 0px;
+   }
+}

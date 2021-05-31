@@ -1,0 +1,10 @@
+.nav-list__submenu-list_opened{
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 1370px) {
+  .nav-list__submenu-list_opened {
+      display: none;
+  }
+}

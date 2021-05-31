@@ -1,0 +1,35 @@
+.answers {
+  margin: 0 auto;
+  padding: 80px 0 0;
+  width: 70%;
+  font-weight: 300;
+  font-size: 23px;
+  line-height: 1.30;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+  
+@media screen and (max-width: 1440px) {
+  .answers {
+    width: 85%;
+    padding: 80px 0 0;
+    font-size: 19px;
+    line-height: 1.21;
+  }
+}
+  
+@media screen and (max-width: 1024px) {
+  .answers {
+    padding: 80px 0 0;
+    
+  }
+}
+
+@media screen and (max-width: 424px) {
+  .answers {
+    width: 100%;
+  }
+}
+  

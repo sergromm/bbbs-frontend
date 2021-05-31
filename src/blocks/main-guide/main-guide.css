@@ -1,0 +1,18 @@
+.main-guide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 85px 0 120px;
+}
+
+@media (max-width: 1200px) {
+    .main-guide {
+        margin: 49px 0 100px;
+    }
+}
+
+@media (max-width: 800px) {
+    .main-guide {
+        margin: 30px 0 50px;
+    }
+}

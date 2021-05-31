@@ -1,0 +1,5 @@
+.answers__answer-title {
+    margin: 0 0 15px;
+    padding: 0;
+    width: calc(100% - 50px);
+  }

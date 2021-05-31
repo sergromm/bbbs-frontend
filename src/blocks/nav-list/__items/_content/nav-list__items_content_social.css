@@ -1,0 +1,9 @@
+.nav-list__items_content_social {
+  display: none;
+}
+
+@media screen and (max-width: 1370px) {
+  .nav-list__items_content_social {
+    display: block;
+  }
+}

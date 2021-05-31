@@ -1,0 +1,22 @@
+.profile-ico {
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  width: 20px;
+  height: 20px;
+  padding-left: 50px;
+  cursor: pointer;
+  object-fit: scale-down;
+  border-left: 0.7px solid #a7a6a6;
+}
+
+@media screen and (max-width: 1370px) {
+  .profile-ico {
+    visibility: hidden;
+    opacity: 0;
+    border-left: none;
+    padding-left: 0;
+    margin-left: 15px;
+    transition: 0.3s;
+  }
+}

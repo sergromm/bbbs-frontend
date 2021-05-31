@@ -1,0 +1,45 @@
+.header {
+  font-family: "ProtoGrotesk", Georgia, Serif;
+  padding: 40px 75px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  width: 100%;
+  min-height: 110px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  transition: 0.5s cubic-bezier(0.7, 0.2, 0.2, 0.7);
+  visibility: visible;
+  opacity: 1;
+  background-color: #f3f2f2;
+  z-index: 999;
+}
+
+@media screen and (max-width: 1441px) {
+  .header {
+    padding: 40px 135px;
+  }
+}
+
+@media screen and (max-width: 1370px) {
+  .header {
+    padding: 30px 135px;
+    flex-direction: row-reverse;
+  }
+}
+
+@media screen and (max-width: 1025px) {
+  .header {
+    padding: 30px 127px;
+  }
+}
+
+@media screen and (max-width: 940px) {
+  .header {
+    min-height: 50px;
+    padding: 0 15px;
+  }
+}

@@ -1,0 +1,18 @@
+.header__btn-menu {
+  display: none;
+  width: 30px;
+  height: 20px;
+  background-image: url("../../../images/open-menu-btn.svg");
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+
+@media screen and (max-width: 1370px) {
+  .header__btn-menu {
+    display: block;
+  }
+}
