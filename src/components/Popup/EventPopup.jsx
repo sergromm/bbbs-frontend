@@ -4,15 +4,17 @@ import EventCard from "../EventCard/EventCard";
 
 function EventPopup({ isPopupOpen, closePopup, event, onSubmitSign }) {
   return (
-    <Popup isPopupOpen={isPopupOpen} closePopup={closePopup}>
-      <EventCard
-        event={event}
-        btnStyle="event__button_unvisible"
-        onSign={onSubmitSign}
-      >
-        <p className="calendar-modal__description">{event.description}</p>
-      </EventCard>
-    </Popup>
+    event && (
+      <Popup isPopupOpen={isPopupOpen} closePopup={closePopup}>
+        <EventCard
+          event={event}
+          btnStyle="event__button_unvisible"
+          onSign={onSubmitSign}
+        >
+          <p className="calendar-modal__description">{event.description}</p>
+        </EventCard>
+      </Popup>
+    )
   );
 }
 
@@ -38,16 +40,16 @@ EventPopup.propTypes = {
   closePopup: PropTypes.func.isRequired,
   onSubmitSign: PropTypes.func.isRequired,
   event: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    address: PropTypes.string.isRequired,
-    booked: PropTypes.bool.isRequired,
-    contact: PropTypes.string.isRequired,
-    seats: PropTypes.number.isRequired,
-    takenSeats: PropTypes.number.isRequired,
-    startAt: PropTypes.string.isRequired,
-    endAt: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    id: PropTypes.number,
+    title: PropTypes.string,
+    address: PropTypes.string,
+    booked: PropTypes.bool,
+    contact: PropTypes.string,
+    seats: PropTypes.number,
+    takenSeats: PropTypes.number,
+    startAt: PropTypes.string,
+    endAt: PropTypes.string,
+    description: PropTypes.string,
   }),
 };
 

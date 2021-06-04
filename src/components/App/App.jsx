@@ -27,7 +27,7 @@ function App() {
   const [isErrorPopupOpen, setIsErrorPopupOpen] = useState(false);
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState({
-    id: 1,
+    id: 6,
     booked: false,
     address: "",
     contact: "",
@@ -71,7 +71,17 @@ function App() {
     api
       .bookEvent(event.id, token)
       .then(() => {
-        selectedEvent.booked = !event.booked;
+        const newEvents = events.map((item) => {
+          if (event.id === item.id) {
+            // eslint-disable-next-line no-param-reassign
+            item.booked = !event.booked;
+            setSelectedEvent(item);
+            return item;
+          }
+          return item;
+        });
+
+        setEvents(newEvents);
         closeAllPopups();
         if (selectedEvent.booked) {
           setIsSuccessPopupOpen(true);
