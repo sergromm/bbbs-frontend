@@ -25,6 +25,7 @@ function App() {
   const [isSignPopupOpen, setIsSignPopupOpen] = useState(false);
   const [isSuccessPopupOpen, setIsSuccessPopupOpen] = useState(false);
   const [isErrorPopupOpen, setIsErrorPopupOpen] = useState(false);
+  const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState({
     id: 1,
     booked: false,
@@ -79,8 +80,6 @@ function App() {
       .catch(() => setIsErrorPopupOpen(true));
   };
 
-  useEffect(() => {});
-
   const handleSignEvent = (event) => {
     setSelectedEvent(event);
     if (!event.booked) {
@@ -134,6 +133,17 @@ function App() {
     }
   }, []);
 
+  // загружаем данные для календаря
+  useEffect(() => {
+    const token = localStorage.getItem("access");
+    api
+      .getEvents(currentUser.city, token)
+      .then((data) => {
+        setEvents(data);
+      })
+      .catch(new Error());
+  }, []);
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="App">
@@ -151,6 +161,7 @@ function App() {
               onZoomEvent={handleEventCardClick}
               onSign={handleSignEvent}
               openAuthPopup={openAuthPopup}
+              events={events}
             />
           </Route>
           <Route path="/profile">

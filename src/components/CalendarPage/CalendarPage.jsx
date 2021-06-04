@@ -3,17 +3,12 @@ import { ru } from "date-fns/locale";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import EventCard from "../EventCard/EventCard";
-import api from "../../utils/api/api";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
 import Filter from "../Filter/Filter";
 
-function CalendarPage({ onZoomEvent, onSign }) {
-  const { city } = React.useContext(CurrentUserContext);
-  const token = localStorage.getItem("access");
-  const [events, setEvents] = React.useState([]);
+function CalendarPage({ onZoomEvent, onSign, events }) {
+  const [currentActiveButton, setCurrentActiveButton] = useState("");
   const [filteredEvents, setFilteredEvents] = React.useState([]);
   const [monthes, setMonthes] = useState([]);
-  const [currentActiveButton, setCurrentActiveButton] = useState("");
 
   // функция возвращает объект месяца, чтобы добавить его в массив месяцев
   const getMonth = (event) => {
@@ -46,15 +41,10 @@ function CalendarPage({ onZoomEvent, onSign }) {
     setFilteredEvents(arrayOfFilteredEvents);
   };
 
-  // получаем массив событий при загрузке странице
+  // настраиваем фильтры при загрузке странице
   React.useEffect(() => {
-    api
-      .getEvents(city, token)
-      .then((data) => {
-        setEvents(data);
-        setMonthes(getMonthes(data));
-      })
-      .catch(new Error());
+    setFilteredEvents(events);
+    setMonthes(getMonthes(events));
   }, []);
 
   return (
@@ -84,6 +74,8 @@ function CalendarPage({ onZoomEvent, onSign }) {
 CalendarPage.propTypes = {
   onZoomEvent: PropTypes.func.isRequired,
   onSign: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  events: PropTypes.array.isRequired,
 };
 
 export default CalendarPage;
