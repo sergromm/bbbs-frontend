@@ -12,6 +12,11 @@ function SubmitSignPopup({ isPopupOpen, closePopup, onSubmitSign, event }) {
   const endHour = format(parseISO(event.endAt), "H", { locale: ru });
   const startMinutes = format(parseISO(event.startAt), "mm", { locale: ru });
   const endMinutes = format(parseISO(event.endAt), "mm", { locale: ru });
+
+  function handleSubmit() {
+    onSubmitSign(event);
+  }
+
   return (
     <Popup isPopupOpen={isPopupOpen} closePopup={closePopup}>
       {event && (
@@ -31,7 +36,7 @@ function SubmitSignPopup({ isPopupOpen, closePopup, onSubmitSign, event }) {
               aria-label="Подтвердить запись"
               className="event__button event__button_active
             event__button_type_signup calendar-modal__button_type_confirm"
-              onClick={onSubmitSign}
+              onClick={handleSubmit}
             >
               Подтвердить запись
             </button>

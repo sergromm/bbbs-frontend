@@ -1,4 +1,5 @@
 import { parseISO, format } from "date-fns";
+
 import { ru } from "date-fns/locale";
 import PropTypes from "prop-types";
 
@@ -17,7 +18,9 @@ function EventCard({
   const date = format(parseISO(event.startAt), "d", { locale: ru });
   const startHour = format(parseISO(event.startAt), "H", { locale: ru });
   const endHour = format(parseISO(event.endAt), "H", { locale: ru });
-  const startMinutes = format(parseISO(event.startAt), "mm", { locale: ru });
+  const startMinutes = format(parseISO(event.startAt), "mm", {
+    locale: ru,
+  });
   const endMinutes = format(parseISO(event.endAt), "mm", { locale: ru });
 
   const counter = event.seats - event.takenSeats;
@@ -38,7 +41,7 @@ function EventCard({
     }
   };
 
-  const newData = () => {
+  function newData() {
     if (event.booked)
       return {
         styles: "event__button_active event__button_type_cancel",
@@ -54,7 +57,7 @@ function EventCard({
       textCounter:
         counter > 0 ? `Осталось ${counter} ${wordPlace()}` : "Запись закрыта",
     };
-  };
+  }
 
   function handleSubmit() {
     onSign(event);
@@ -96,7 +99,7 @@ function EventCard({
             className={`event__button ${newData().styles}`}
             onClick={handleSubmit}
           >
-            {newData().textBtn}
+            {event.booked ? "Отменить" : "Записаться"}
           </button>
           <p className="event__participants-counter">{newData().textCounter}</p>
         </div>

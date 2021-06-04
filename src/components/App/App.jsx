@@ -65,12 +65,12 @@ function App() {
     setIsAuthPopupOpen(true);
   };
 
-  const handleSubmitSign = () => {
+  const handleSubmitSign = (event) => {
     const token = localStorage.getItem("access");
     api
-      .bookEvent(selectedEvent.id, token)
+      .bookEvent(event.id, token)
       .then(() => {
-        selectedEvent.booked = !selectedEvent.booked;
+        selectedEvent.booked = !event.booked;
         closeAllPopups();
         if (selectedEvent.booked) {
           setIsSuccessPopupOpen(true);
