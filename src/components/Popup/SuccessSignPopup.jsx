@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { parseISO, format } from "date-fns";
 import { ru } from "date-fns/locale";
+import { useHistory } from "react-router-dom";
 import Popup from "./Popup";
 import success from "../../lotties/success.json";
 import Animation from "../Animation/Animation";
@@ -14,6 +15,12 @@ function SuccessSignPopup({ isPopupOpen, closePopup, event }) {
   const endHour = format(parseISO(event.endAt), "H", { locale: ru });
   const startMinutes = format(parseISO(event.startAt), "mm", { locale: ru });
   const endMinutes = format(parseISO(event.endAt), "mm", { locale: ru });
+  const history = useHistory();
+
+  function handleRedirect() {
+    history.push("/calendar");
+    closePopup();
+  }
 
   return (
     <Popup isPopupOpen={isPopupOpen} closePopup={closePopup}>
@@ -36,7 +43,7 @@ function SuccessSignPopup({ isPopupOpen, closePopup, event }) {
           aria-label="Вернуться к календарю"
           className="event__button calendar-modal__button_active
             calendar-modal__button_type_return-to-calendar"
-          onClick={closePopup}
+          onClick={handleRedirect}
         >
           Вернуться к календарю
         </button>
