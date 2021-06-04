@@ -163,6 +163,7 @@ function App() {
             <MainPage
               onSign={handleSubmitSign}
               onZoomEvent={handleEventCardClick}
+              events={events}
             />
           </Route>
           <Route path="/calendar">

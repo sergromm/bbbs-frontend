@@ -13,7 +13,7 @@ import EventCard from "../EventCard/EventCard";
 const Video = lazy(() => import("./Video"));
 const SocialIframe = lazy(() => import("./SocialIframe"));
 
-function MainPage({ onZoomEvent, onSign }) {
+function MainPage({ onZoomEvent, onSign, events }) {
   const currentUser = useContext(CurrentUserContext);
   const [mainPageData, setMainPageData] = useState({});
   const { articles, movies, history, place, video, event, questions } =
@@ -32,7 +32,7 @@ function MainPage({ onZoomEvent, onSign }) {
       {currentUser.isLoggedIn ? (
         <EventCard
           isOnMain
-          event={event}
+          event={events.find((item) => item.id === event.id)}
           onZoomEvent={onZoomEvent}
           onSign={onSign}
         />
@@ -63,6 +63,8 @@ function MainPage({ onZoomEvent, onSign }) {
 MainPage.propTypes = {
   onSign: PropTypes.func.isRequired,
   onZoomEvent: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  events: PropTypes.array.isRequired,
 };
 
 export default MainPage;
