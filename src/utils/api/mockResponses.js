@@ -34,7 +34,7 @@ const mockResponses = {
   },
   mainPage: {
     event: {
-      id: 11,
+      id: 1,
       tags: [
         {
           id: 111,

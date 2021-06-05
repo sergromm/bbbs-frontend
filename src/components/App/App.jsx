@@ -25,8 +25,9 @@ function App() {
   const [isSignPopupOpen, setIsSignPopupOpen] = useState(false);
   const [isSuccessPopupOpen, setIsSuccessPopupOpen] = useState(false);
   const [isErrorPopupOpen, setIsErrorPopupOpen] = useState(false);
+  const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState({
-    id: 1,
+    id: 6,
     booked: false,
     address: "",
     contact: "",
@@ -65,12 +66,22 @@ function App() {
     setIsAuthPopupOpen(true);
   };
 
-  const handleSubmitSign = () => {
+  const handleSubmitSign = (event) => {
     const token = localStorage.getItem("access");
     api
-      .bookEvent(selectedEvent.id, token)
+      .bookEvent(event.id, token)
       .then(() => {
-        selectedEvent.booked = !selectedEvent.booked;
+        const newEvents = events.map((item) => {
+          if (event.id === item.id) {
+            // eslint-disable-next-line no-param-reassign
+            item.booked = !event.booked;
+            setSelectedEvent(item);
+            return item;
+          }
+          return item;
+        });
+
+        setEvents(newEvents);
         closeAllPopups();
         if (selectedEvent.booked) {
           setIsSuccessPopupOpen(true);
@@ -78,8 +89,6 @@ function App() {
       })
       .catch(() => setIsErrorPopupOpen(true));
   };
-
-  useEffect(() => {});
 
   const handleSignEvent = (event) => {
     setSelectedEvent(event);
@@ -134,6 +143,17 @@ function App() {
     }
   }, []);
 
+  // загружаем данные для календаря
+  useEffect(() => {
+    const token = localStorage.getItem("access");
+    api
+      .getEvents(currentUser.city, token)
+      .then((data) => {
+        setEvents(data);
+      })
+      .catch(new Error());
+  }, []);
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="App">
@@ -143,6 +163,7 @@ function App() {
             <MainPage
               onSign={handleSubmitSign}
               onZoomEvent={handleEventCardClick}
+              events={events}
             />
           </Route>
           <Route path="/calendar">
@@ -151,6 +172,7 @@ function App() {
               onZoomEvent={handleEventCardClick}
               onSign={handleSignEvent}
               openAuthPopup={openAuthPopup}
+              events={events}
             />
           </Route>
           <Route path="/profile">

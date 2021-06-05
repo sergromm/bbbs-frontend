@@ -8,6 +8,7 @@ function ProtectedRoute({
   onSign,
   onZoomEvent,
   openAuthPopup,
+  events,
 }) {
   const { isLoggedIn } = React.useContext(CurrentUserContext);
   function protect() {
@@ -18,7 +19,7 @@ function ProtectedRoute({
   return (
     <Route>
       {isLoggedIn ? (
-        <Component onSign={onSign} onZoomEvent={onZoomEvent} />
+        <Component onSign={onSign} onZoomEvent={onZoomEvent} events={events} />
       ) : (
         protect()
       )}
@@ -31,6 +32,8 @@ ProtectedRoute.propTypes = {
   onSign: PropTypes.func.isRequired,
   onZoomEvent: PropTypes.func.isRequired,
   openAuthPopup: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  events: PropTypes.array.isRequired,
 };
 
 export default ProtectedRoute;
